@@ -2,7 +2,10 @@ title: 老生常谈——BFC与haslayout
 categories:
   - Code
 tags:
-  - BFC,haslayout,HTML,CSS
+  - BFC
+  - haslayout
+  - HTML
+  - CSS
 date: 2015-03-18 19:21:00
 ---
 #####关于Layout

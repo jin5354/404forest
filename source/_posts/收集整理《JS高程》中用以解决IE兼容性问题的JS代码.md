@@ -2,7 +2,8 @@ title: 收集整理《JS高程》中用以解决IE兼容性问题的JS代码
 categories:
   - Code
 tags:
-  - Javascript,兼容性
+  - Javascript
+  - 兼容性
 date: 2015-04-03 20:26:00
 ---
 
