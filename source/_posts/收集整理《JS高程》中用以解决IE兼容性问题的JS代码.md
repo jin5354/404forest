@@ -6,6 +6,8 @@ tags:
 date: 2015-04-03 20:26:00
 ---
 
+大坑，边看边填。
+
 ####跨浏览器中的事件处理程序与事件对象
 
 ######兼容性问题：
@@ -50,5 +52,32 @@ var eventUtil = {
 跨浏览器的事件对象：
 
 ```
-
+var eventUtil = {
+    addHandler: function(){
+        ...
+    },
+    removeHandler: function(){
+        ...
+    },
+    getEvent: function(event){
+        return event?event:window.event;
+    },
+    getTarget: function(event){
+        return event.target || event.srcElement;
+    },
+    preventDefault: function(){
+        if(event.preventDefault){
+            event.preventDefault();
+        }else{
+            event.eturnValue = false;
+        }
+    },
+    stopPropagation: function(){
+        if(event.stopPropagation){
+            event.stopPropagation();
+        }else{
+            event.cancelBubble = true;
+        }
+    }
+}
 ```
