@@ -82,3 +82,68 @@ var eventUtil = {
     }
 }
 ```
+
+####在文本框中选择部分文字
+
+######兼容性问题：
+
+* 除IE8及之前版本外，其他浏览器都实现了setSelectionRange()方法
+* 在IE8及之前版本中，若要在文本框中选择部分文字，必须先使用createTextRange()方法在文本框上创建一个范围，使用collapse()方法折叠到文本框的开始位置，然后使用moveStart()和moveEnd()将范围移动到位。
+
+```
+textbox.value = "Hello World!";
+
+function selectText(textbox, startIndex, endIndex){
+    if(textbox.setSelectionRange){
+        textbox.setSelectionRange(startIndex, endIndex);
+    }else if(textbox.createTextRange){
+        var range = textbox.createTextRange();
+        range.collapse(true);
+        range.moveStart("character", startIndex);
+        range.moveEnd("character", startIndex - endIndex);
+        range.select();
+    }
+    textbox.focus();
+}
+```
+
+####获取字符编码
+
+######兼容性问题
+
+* 在IE8及之前版本浏览器中，在event的keyCode属性中保存字符的ASC2编码。
+* 在其他浏览器中，在event的charCode属性中保存字符的ASC2编码，keyCode通常等于0或者所按键的键码。
+
+```
+var eventUtil = {
+    getCharCode: function(event){
+        if(typeof event.charCode == "number"){
+            return event.charCode;
+        }else{
+            return event.keyCode;
+        }
+    }
+}
+```
+
+####操作剪切板
+
+######兼容性问题：
+
+* 访问剪切板使用对象clipboardData；在IE中此为window对象的属性，时刻可访问；在FF、safari、chrome中为event属性，只有处理剪切板事件期间才可访问。
+
+```
+var eventUtil = {
+    getClipboardText: function(event){
+        var clipboardData = event.clipboardData || window.clipboardData;
+        return clipboardData.getData("tetx");
+    },
+    setClipboardText: function(event, value){
+        if(event.clipboardData){
+            return event.clipboardData.setData("text/plain", value);
+        }else if(window.clipboardData){
+            return window.clipboardData.setData("text", value);
+        }
+    }
+}
+```
