@@ -212,4 +212,3 @@ function createCORSRequest(method, url){
     return xhr;
 }
 ```
-
