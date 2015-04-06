@@ -3,7 +3,7 @@ categories:
   - Code
 tags:
   - Javascript
-date: 2015-03-09 16:00:00
+date: 2015-04-06 16:00:00
 ---
 ####对象的创建模式：
 
@@ -361,3 +361,56 @@ SubType.prototype.sayAge = function(){
 ![javascript 寄生组合式继承](http://my404forest.qiniudn.com/javascript 寄生组合式继承.png)
 
 子类型原型不再有多余的超类型实例属性，而且可以自己进行增强。最理想的继承方式~~
+
+**番外：**
+
+在调用构造函数时，如果忘记加new操作符，this会映射到全局变量上，导致全局变量属性的意外增加。为了避免这个问题，可以把构造函数稍加改造，成为作用域安全的构造函数。
+
+```
+function Person(name, age, job){
+    if(this instanceof Person){
+        this.name = name;
+        this.age = age;
+        this.job = job;
+    }else{
+        return new Person(name, age, job);
+    }
+}
+```
+
+作用域安全的构造函数在创建新的实例之前，首先确认this对象是正确类型的实例。如果漏加了new操作符，那么会创建新的实例并返回。
+
+**问题：**作用域安全的构造函数不能应用与借用构造函数的继承方法。借用构造函数时，使用call()方法改变了this的指向，无法通过验证，也就不会在this上添加新的属性。解决这个问题的方法就是要同时应用原型链继承或寄生组合时继承，这样子类型的实例同时是子类型构造函数和超类型构造函数的实例，可以通过验证。
+
+```
+function Person(name, age, job){
+    if(this instanceof Person){
+        this.name = name;
+        this.age = age;
+        this.job = job;
+    }else{
+        return new Person(name, age, job);
+    }
+}
+
+function Men(name, age ,job){
+    Person.call(this, name, age, job);//instanceof验证失败
+}
+```
+```
+function Person(name, age, job){
+    if(this instanceof Person){
+        this.name = name;
+        this.age = age;
+        this.job = job;
+    }else{
+        return new Person(name, age, job);
+    }
+}
+
+function Men(name, age ,job){
+    Person.call(this, name, age, job);
+}
+
+Men.prototype = new Person();//现在Men的实例同时也是Person的实例，instanceof验证通过
+```

@@ -1,4 +1,4 @@
-title: 收集整理《JS高程》中用以解决IE兼容性问题的JS代码
+title: 收集整理《JS高程》中用以解决跨浏览器兼容性问题的JS代码
 categories:
   - Code
 tags:
@@ -147,3 +147,69 @@ var eventUtil = {
     }
 }
 ```
+
+####解析与序列化XML
+
+######兼容性问题
+
+* IE8及之前版本浏览器，解析XML通过ActiveX对象实现，使用loadXML()方法，出错时可以在parseError属性中找到错误信息。序列化使用XMLSerializer类型的serializerToString()方法。
+* 现代浏览器使用DOMParser进行解析，出错时会在返回的文档对象内包含<parsererror>元素，序列化直接使用dom的xml属性。
+
+```
+function parseXml(xml){
+    var xmldom = null;
+    
+    if(typeof DOMParser != "undefined"){
+        xmldom = (new DOMParser()).parseFromString(xml, "text/xml");
+        var errors = xmldom.getElementByTagName("parsererror");
+        if(errors.length){
+            throw new Error("XML parsing error:" + errors[0].textContent);
+        }
+    }else if(typeof ActiveXObject != "undefined"){
+        xmldom = createDocument();//关于此函数见P524
+        xmldom.loadXML(xml);
+        if(xmldom.parseError != 0){
+            throw new Error("XML parsing error:" + xml.parseError.reason);
+        }
+    }else{
+        throw new Error("No XML parser available.");
+    }
+    
+    return xmldom;
+}
+
+function serializeXml(xmldom){
+
+    if(typeof XMLSerializer != "undefined"){
+        return (new XMLSerializer()).serializerToString(xmldom);
+    }else if(typeof xmldom.xml != "undefined"){
+        return xmldom.xml;
+    }else{
+        throw new Error("Could not serialize XML DOM.");
+    }
+}
+```
+
+####跨浏览器CORS(跨域资源共享)
+
+######兼容性问题：
+
+* IE使用XDR对象支持CORS
+* 其他现代浏览器的XHR对象原生支持CORS，并且提供Preflighted Requests和带凭据的请求。
+
+```
+function createCORSRequest(method, url){
+    var xhr = new XMLHttpRequest();
+    if("withCredentials" in xhr){ //通过检查是否支持带凭据请求判断XHR对象是否原生支持CORS
+        xhr.open(method, url, true);
+    }else if(typeof XDomainRequests != "undefined"){
+        xhr = new XDomainRequest();
+        xhr.open(method, url);
+    }else{
+        xhr = null;
+    }
+    
+    return xhr;
+}
+```
+
