@@ -57,3 +57,15 @@ Ajax与Comet：
 高级技巧：
 
 ![高级技巧](http://my404forest.qiniudn.com/高级技巧.png)
+
+最佳实践
+
+![最佳实践](http://my404forest.qiniudn.com/最佳实践.png)
+
+离线应用与客户端存储
+
+![离线应用与客户端存储](http://my404forest.qiniudn.com/离线应用与客户端存储.png)
+
+新型API
+
+![新型API](http://my404forest.qiniudn.com/新型API.png)
