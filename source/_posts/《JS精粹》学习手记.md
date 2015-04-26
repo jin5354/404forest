@@ -97,4 +97,23 @@ add1(5);//6
 
 全局变量就是在所有作用域中都可见的变量。因为一个全局变量可以被程序的任意部分任意时间更改，它们使得程序的行为变的极度复杂。在程序中使用全局变量降低了程序的可靠性。
 
-(待补充)
+**Unicode**
+
+JavaScript的字符是16位的。
+
+**null**
+
+简单的检测null:  `my_value === null`
+
+typeof不能分辨出null，它的返回值是object。但是除了null所有对象值均为真，从而可以判断：
+
+```JavaScript
+if(!my_value && typeof my_value === 'object') //为null
+```
+
+**判断是否是有效数字**
+
+var isNumber = function(num){
+    return typeof num === 'number' && isFinite(num);//isFinite函数可以过滤NaN和无限数字
+}
+
