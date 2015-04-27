@@ -116,4 +116,3 @@ if(!my_value && typeof my_value === 'object') //为null
 var isNumber = function(num){
     return typeof num === 'number' && isFinite(num);//isFinite函数可以过滤NaN和无限数字
 }
-
