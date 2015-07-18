@@ -1,4 +1,4 @@
-title: 谈谈居中与flexbox
+title: 谈谈居中与flexbox(7.18修订~)
 categories:
   - code
 tags:
@@ -6,8 +6,10 @@ tags:
   - 布局
   - 居中
   - flexbox
-date: 2015-05-25 10:01:00
+date: 2015-07-18 10:01:00
 ---
+
+之前的版本主要是自己搜集网上资料整理所得，最近偶然看到大搜车的这篇[有关居中的文章](http://f2e.souche.com/blog/jie-du-cssbu-ju-zhi-shui-ping-chui-zhi-ju-zhong/)，总结的真是详细级了，于是对自己的这篇5月份的文章进行一下补充。
 
 #####谈谈居中
 
@@ -49,7 +51,7 @@ date: 2015-05-25 10:01:00
 
 <iframe width="100%" height="300" src="//jsfiddle.net/td46s77s/embedded/" allowfullscreen="allowfullscreen" frameborder="0"></iframe>
 
-* 另外一种方式是使用position:relative;left:50%;margin-left:-宽度一半;(相对定位与绝对定位均可)
+* 另外一种方式是使用position:absolute;left:50%;margin-left:-宽度一半;
 
 <iframe width="100%" height="300" src="//jsfiddle.net/eq439zqp/2/embedded/" allowfullscreen="allowfullscreen" frameborder="0"></iframe>
 
@@ -59,11 +61,15 @@ date: 2015-05-25 10:01:00
 
 <iframe width="100%" height="300" src="//jsfiddle.net/eq439zqp/3/embedded/" allowfullscreen="allowfullscreen" frameborder="0"></iframe>
 
-* 双相对定位：父元素使用position:relative;left:50%;如果是块级元素再加上float:left;，子元素使用position:relative;left:-50%;。
+* 绝对定位+相对定位：父元素使用position:absolution;left:50%;子元素使用position:relative;left:-50%;。
 
 意思是父元素先相对定位至50%处，子元素再左偏父元素的50%；达到居中的效果。
 
 <iframe width="100%" height="300" src="//jsfiddle.net/tp0b9c45/embedded/" allowfullscreen="allowfullscreen" frameborder="0"></iframe>
+
+* float+双相对定位：父元素使用float,随后使用position:relative;left:50%;定位到中央，子元素使用position:relative;left:-50%;移回。
+
+这里的float和上个方法的absolute的功能都是收缩这个未知宽度元素的宽度，这样子元素的left的百分比数值才会得出正确结果。
 
 * 绝对定位+translateX: position:absolute;left:50%;transform:translateX(-50%);
 
@@ -98,11 +104,25 @@ date: 2015-05-25 10:01:00
 
 <iframe width="100%" height="300" src="//jsfiddle.net/hbzk7hyn/2/embedded/" allowfullscreen="allowfullscreen" frameborder="0"></iframe>
 
-######额外补充：表格布局
+######额外补充
+
+* 表格布局
 
 使用table实现居中是非常方便的，单独拿出来说一下。子元素设置display:table-cell;结合text-align:center;vertical-align:middle;即可。
 
 <iframe width="100%" height="300" src="//jsfiddle.net/rtq24yof/embedded/" allowfullscreen="allowfullscreen" frameborder="0"></iframe>
+
+* absolute + margin：auto，只适合定宽定高哦
+
+子元素：position:absolute;margin:auto;left:0;right:0;top:0;bottom:0;
+
+* text-align:center + vertical-align:middle 利用占位符作为vertical-align:middle的参照，实现水平与垂直居中，父元素需要定高height:inherit;详见参考资料最后一条
+
+* text-align:center + font-size(87.3%) 通过匿名文字节点的高度作为vertical-align:middle的参照，实现水平与垂直居中，父元素需要定高。详见参考资料最后一条
+
+* CSS grid下的水平垂直居中，近IE10/11支持
+
+* 使用button标签自带的水平垂直功能。详见参考资料最后一条
 
 居中这部分坑大无比，情况非常复杂多变，还会有许多特殊情况，随见到随收集。参考资料里会先放一些。
 
@@ -165,3 +185,4 @@ align-self(auto | flex-start | flex-end | center | baseline | stretch;)这个元
 1. [大小不固定的图片、多行文字的水平垂直居中](http://www.zhangxinxu.com/wordpress/2009/08/%E5%A4%A7%E5%B0%8F%E4%B8%8D%E5%9B%BA%E5%AE%9A%E7%9A%84%E5%9B%BE%E7%89%87%E3%80%81%E5%A4%9A%E8%A1%8C%E6%96%87%E5%AD%97%E7%9A%84%E6%B0%B4%E5%B9%B3%E5%9E%82%E7%9B%B4%E5%B1%85%E4%B8%AD/)
 2. [整理：子容器垂直居中于父容器的方案](http://segmentfault.com/a/1190000000381042)
 3. [CSS在页面布局中实现div水平居中的方法总结](http://dudo.org/archives/2008053023234.html)
+4. [解读CSS布局之-水平垂直居中](http://f2e.souche.com/blog/jie-du-cssbu-ju-zhi-shui-ping-chui-zhi-ju-zhong/)
