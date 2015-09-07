@@ -1,13 +1,16 @@
 title: 使用hexo
 date: 2014-12-04 23:58:41
 categories:
-- 日常
+- Life
 tags:
 - hexo
+- 日常
 ---
 用Hexo差不多算是一时兴起。黑五linode搞活动，眼馋LI日本机房的高性能，于是从DigitalOcean换到Linode尝试一下，那就顺带把平台也换成Hexo了。毕竟Hexo是基于nodeJs写的，而javascript是我接下来一段时期最长接触的语言了吧。
 
 配置好VPS，本地安装Hexo生成新blog，打开index.html。默认主题长相比较平凡，上网找了theme，发现apollo深得我心——或者说一眼就喜欢上了它，于是成为了现在的在用主题。
+
+<!-- more -->
 
 遇到喜欢的作品，我习惯去了解它的作者——[SANOGRAPHIX](http://www.sanographix.net/)，更多详情可在该站的About页面中找到，是一名从事同人志装帧的日本职人，同时也在进行着同人社团工作、平面设计、书籍设计、图形设计、摄影等等工作。首页作品集转了好久，非常喜欢他的风格，打算多研究一下。
 

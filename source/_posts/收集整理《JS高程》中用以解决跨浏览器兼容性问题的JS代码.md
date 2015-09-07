@@ -9,13 +9,15 @@ date: 2015-04-03 20:26:00
 
 大坑，边看边填。
 
-####跨浏览器中的事件处理程序与事件对象
+#### 跨浏览器中的事件处理程序与事件对象
 
-######兼容性问题：
+###### 兼容性问题：
 
 * DOM2级事件处理程序使用addEventListener()与removeEventListener()来添加与移除
 * DOM0级和2级事件处理程序的作用域为所属元素作用域
 * 而IE事件处理程序使用attachEvent()和detachEvent()，只能添加到冒泡阶段，作用域为全局作用域
+
+<!-- more -->
 
 跨浏览器的事件处理程序：
 
@@ -43,9 +45,7 @@ var eventUtil = {
 }
 ```
 
-<!-- more -->
-
-######兼容性问题：
+###### 兼容性问题：
 
 * 指定事件处理程序时DOM0级和2级都会传入event对象。事件处理程序内部，对象this始终等于currentTarget,target为事件实际目标。阻止特定事件的默认行为，使用preventDefault()方法。阻止事件传播使用stopPropagation()。
 * 在IE中，若使用DOM0级事件处理程序，event对象作为window对象一个属性存在。若使用IE事件处理程序，event对象会传入事件处理函数。在IE的event对象中，srcElement为事件实际目标。阻止特定事件的默认行为，将returnValue值设为false。阻止事件传播，将cancelBubble设置为true。不能认为this始终指向事件目标。
@@ -83,9 +83,9 @@ var eventUtil = {
 }
 ```
 
-####在文本框中选择部分文字
+#### 在文本框中选择部分文字
 
-######兼容性问题：
+###### 兼容性问题：
 
 * 除IE8及之前版本外，其他浏览器都实现了setSelectionRange()方法
 * 在IE8及之前版本中，若要在文本框中选择部分文字，必须先使用createTextRange()方法在文本框上创建一个范围，使用collapse()方法折叠到文本框的开始位置，然后使用moveStart()和moveEnd()将范围移动到位。
@@ -107,9 +107,9 @@ function selectText(textbox, startIndex, endIndex){
 }
 ```
 
-####获取字符编码
+#### 获取字符编码
 
-######兼容性问题
+###### 兼容性问题
 
 * 在IE8及之前版本浏览器中，在event的keyCode属性中保存字符的ASC2编码。
 * 在其他浏览器中，在event的charCode属性中保存字符的ASC2编码，keyCode通常等于0或者所按键的键码。
@@ -126,9 +126,9 @@ var eventUtil = {
 }
 ```
 
-####操作剪切板
+#### 操作剪切板
 
-######兼容性问题：
+###### 兼容性问题：
 
 * 访问剪切板使用对象clipboardData；在IE中此为window对象的属性，时刻可访问；在FF、safari、chrome中为event属性，只有处理剪切板事件期间才可访问。
 
@@ -148,9 +148,9 @@ var eventUtil = {
 }
 ```
 
-####解析与序列化XML
+#### 解析与序列化XML
 
-######兼容性问题
+###### 兼容性问题
 
 * IE8及之前版本浏览器，解析XML通过ActiveX对象实现，使用loadXML()方法，出错时可以在parseError属性中找到错误信息。序列化使用XMLSerializer类型的serializerToString()方法。
 * 现代浏览器使用DOMParser进行解析，出错时会在返回的文档对象内包含<parsererror>元素，序列化直接使用dom的xml属性。
@@ -190,9 +190,9 @@ function serializeXml(xmldom){
 }
 ```
 
-####跨浏览器CORS(跨域资源共享)
+#### 跨浏览器CORS(跨域资源共享)
 
-######兼容性问题：
+###### 兼容性问题：
 
 * IE使用XDR对象支持CORS
 * 其他现代浏览器的XHR对象原生支持CORS，并且提供Preflighted Requests和带凭据的请求。

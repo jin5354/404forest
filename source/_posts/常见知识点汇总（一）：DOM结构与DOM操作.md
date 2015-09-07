@@ -8,16 +8,17 @@ tags:
   - 常见知识点汇总
 ---
 
-#####节点关系：
+##### 节点关系：
+
+<!-- more -->
 
 ![node-relationship](http://my404forest.qiniudn.com/node-relationship.png)
 
 节点关系可用上图概括。
 
-<!-- more -->
 ***
 
-#####节点移动
+##### 节点移动
 
 由图知常见的移动方式：
 
@@ -79,10 +80,10 @@ var firstChild = someNode.childNodes.item(0);
 </pre>
 
 
-#####节点操作
+##### 节点操作
 
 
-######创建
+###### 创建
 
 **创建元素节点**
 ``` javascript
@@ -116,7 +117,7 @@ var attr = document.createAttribute("align");
 ```
 特性节点不被认为是文档树的部分。相比直接引用特性节点，getAttribute()、setAttribute()、removeAttribute()方法更为常用。
 
-######删除节点
+###### 删除节点
 
 **删除元素节点**
 ``` javascript
@@ -129,7 +130,7 @@ thisDIV.removeAttribute('color');
 thisDIV.removeAttributeNode(color);
 ```
 
-######添加节点
+###### 添加节点
 ``` javascript
 var returnNode = someNode.appendChild(newNode);
 ```
@@ -141,17 +142,17 @@ appendChild()用于向**childNodes列表的末尾**添加一个节点。更新�
 insertBefore(要插入的节点,作为参照的节点);
 ```
 
-######替换节点
+###### 替换节点
 ``` javascript
 replaceChild(要插入的节点，要替换的节点);
 ```
 
-######移除节点
+###### 移除节点
 ``` javascript
 removeChild(要移除的节点);
 ```
 
-######克隆节点
+###### 克隆节点
 cloneNode()用于创建调用这个方法的节点的另一个完全相同的副本。它接受一个布尔值参数，在参数为true时，执行深复制，复制节点及整个子节点树；在参数为false时，执行浅复制，只复制节点本身。复制后的节点副本属于文档所有，为孤儿状态。
 ``` javascript
 var deepList = myList.cloneNode(true);
@@ -159,7 +160,7 @@ var shallowList = myList.cloneNode(false);
 ```
 > cloneNode()方法不会复制添加到DOM节点中的Javascript属性，例如事件处理程序等。
 
-######查找节点
+###### 查找节点
 getElementsByTagName()：返回带有指定标签名的对象的集合。
 getElementsByName()：返回带有指定名称的对象的集合。
 getElementById() ：返回对拥有指定 ID 的第一个对象的引用。

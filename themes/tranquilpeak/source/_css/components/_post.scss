@@ -1,0 +1,78 @@
+.post {
+    position:       relative;
+    width:          100%;
+    display:        inline-block;
+    vertical-align: top;
+
+    .post-header {
+        .post-title {
+            margin:     0;
+            word-break: initial;
+            overflow:   hidden;
+
+            &:hover {
+                text-decoration: none;
+            }
+        }
+    }
+    // Post meta contains post's date, post's categories and tags
+    .post-meta {
+        line-height: 1.5em;
+        font-family: 'Open Sans', sans-serif;
+        font-size:   map-get($font-size, small);
+        font-weight: 400;
+        color:       map-get($colors, light);
+
+        a {
+            color: map-get($colors, light);
+        }
+    }
+    .post-content {
+        font-family: 'Merriweather', serif;
+        color:       map-get($colors, base);
+        margin-top:  60px;
+        font-weight: 300;
+        overflow:    hidden;
+        word-break:  break-word;
+        @include prefix('word-break', 'break-all', 'ms moz');
+        @include prefix('hypens', 'auto', 'webkit moz');
+
+        img {
+            display:       block;
+            width:         auto;
+            max-width:     100%;
+            border-radius: 3px;
+        }
+    }
+    .post-footer {
+        margin-top: 20px;
+        &-tags {
+            padding-bottom: 10px;
+            margin-bottom:  10px;
+            border-bottom:  1px solid #eef2f8;
+        }
+    }
+}
+
+// Increase the font size of the post's title on medium screen (only for single post view)
+@media #{$medium-only} {
+    .post {
+        .post-header {
+            .post-title {
+                font-size: map-get($headings-font-size, h1) + 0.5rem;
+            }
+        }
+    }
+}
+
+// Increase the font size of the post's title on large screen (only for single post view)
+@media #{$large-and-up} {
+    .post {
+        .post-header {
+            .post-title {
+                font-size: map-get($headings-font-size, h1) + 0.9rem;
+            }
+        }
+    }
+}
+

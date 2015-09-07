@@ -9,7 +9,9 @@ tags:
 ---
 XMLHttpRequest（以下简称XMR）是一组API函数集，可被JavaScript、JScript、VBScript以及其它web浏览器内嵌的脚本语言调用，通过HTTP在浏览器和web服务器之间收发XML或其它数据。
 
-#####创建XHR对象
+##### 创建XHR对象
+
+<!-- more -->
 
 1. IE7之前版本
 IE5是第一款引入XHR对象的浏览器。在IE5中，XHR对象是通过MSXML库中的一个ActiveX对象实现的。因此，在IE中可能遇到三种不同版本的XHR对象，即MSXML2.XMLHttp、MSXML2.XMLHttp.3.0、MSXML2.XMLHttp.6.0。要使用MSXML库中的XHR对象，需要编写一个函数，例如：
@@ -33,7 +35,6 @@ function createXMLHTTP(){
 ```
 这个函数会尽力根据IE中可用的MSXM库的情况创建最新版本的XHR对象。
 
-<!-- more -->
 ***
 
 2. IE7+及其他浏览器
@@ -72,7 +73,7 @@ function createXHR(){
 }
 ```
 
-#####XHR用法
+##### XHR用法
 
 1.open()
 

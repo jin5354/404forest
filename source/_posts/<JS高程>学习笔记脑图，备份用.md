@@ -10,9 +10,9 @@ date: 2015-04-06 21:38:00
 
 DOM：
 
-![DOM](http://my404forest.qiniudn.com/DOM.png)
-
 <!-- more -->
+
+![DOM](http://my404forest.qiniudn.com/DOM.png)
 
 DOM2与DOM3：
 
