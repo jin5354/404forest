@@ -1,0 +1,32 @@
+<% var rPhoto = /([\w:\-\/._#]+) *(["|'](.+)["|'])*/; %>
+<% if ((photos) && (photos.length)) { %>
+    <% var imageGalleryClass; %>
+    <% if (photos.length > 2) { %>
+        <% imageGalleryClass = 'image-gallery-photos--thumbnail' %>
+    <% } %>
+    <div class="image-gallery">
+        <div class="image-gallery-metabar">
+            <span><%=  'Gallery : ' + photos.length + ' images' %></span>
+        </div>
+        <div class="image-gallery-photos <%= imageGalleryClass %>">
+            <% photos.forEach(function(photo) { %>
+                    <% var match = photo.match(rPhoto); %>
+                    <% var photoUrl = match[1]; %>
+                    <% var photoTitle = match[3] || ""; %>
+                <% if ((photoUrl.indexOf(config.url) < 0) && (photoUrl.indexOf('://') >= 0)) { %>
+                    <%  photoUrl = photoUrl; %>
+                    <% if (!/.+\.[a-zA-Z0-9]{3,4}$/.test(photoUrl)) { %>
+                        <%  photoUrl += "#.jpg"; %>
+                    <% } %>
+                <% } else { %>
+                    <% photoUrl = url_for(post.path.replace('.html', '/') + photo); %>
+                <% } %>
+                <div class="photo-box">
+                    <a class="photo-box-inner fancybox" rel="fancybox-thumb" data-fancybox-group="<%= 'gallery-' + post.id %>" title="<%= photoTitle %>" href="<%= photoUrl %>">
+                        <img class="photo" src="<%= photoUrl %>" itemprop="image">
+                    </a>
+                </div>
+            <% }); %>
+        </div>
+    </div>
+<% } %>
