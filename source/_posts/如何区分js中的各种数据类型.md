@@ -13,6 +13,8 @@ date: 2015-01-28 17:35:41
 instanceof可用来判定实例，所以可以来判断Array、RegExp、Date、Error。
 判断Null用if (!exp && typeof exp != "undefined" && exp != 0)来判断。
 
+<!-- more -->
+
 关于null要注意的是：
 
 * typeof null为object;
@@ -21,8 +23,6 @@ instanceof可用来判定实例，所以可以来判断Array、RegExp、Date、E
 * null在数值运算中会自动转为0，而undefined会转为NaN。
 
 还有一点，对于String和Number。如果直接创建，不使用构造函数，由于变量不是对象，可以使用typeof判断，不能用instanceof判断。如果用new String()构造函数来创造变量，则可以使用instanceof判断，typeof判断为object。
-
-<!-- more -->
 
 ``` javascript
 var a = "text1";

@@ -6,6 +6,7 @@ tags:
   - html
   - css
 date: 2015-07-14 23:44:41
+metaAlignment: left
 ---
 
 不好意思，很久没有更新blog了。ifetask0003大概6月下旬完成，后来面临期末考试等杂七杂八的事项，一直没能拿出时间写文。

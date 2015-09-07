@@ -7,6 +7,8 @@ date: 2014-12-29 13:15:41
 ---
 <div class="color"><p><input type="text" id="Ri" class="fk"><input type="text" id="Gi" class="fk"><input type="text" id="Bi" class="fk"><span class="output">#000000</span></p><div class="RGB"><div id="Rs"><span>R</span></div><div id="Rg"><span>G</span></div><div id="Rb"><span>B</span></div></div><p><br />也可以将类似“255,198,139”或者“background-color: rgb(255,198,139);”类似包含RGB信息的字符串粘贴在下面的输入框里，会自动处理。</p><p><input type="text" id="copy"></p></div>
 
+<!-- more -->
+
 <style>
 	.container{
 		width: 940px;

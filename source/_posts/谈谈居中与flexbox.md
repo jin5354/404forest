@@ -1,6 +1,6 @@
 title: 谈谈居中与flexbox(7.18修订~)
 categories:
-  - code
+  - Code
 tags:
   - css
   - 布局
@@ -11,7 +11,9 @@ date: 2015-07-18 10:01:00
 
 之前的版本主要是自己搜集网上资料整理所得，最近偶然看到大搜车的这篇[有关居中的文章](http://f2e.souche.com/blog/jie-du-cssbu-ju-zhi-shui-ping-chui-zhi-ju-zhong/)，总结的真是详细级了，于是对自己的这篇5月份的文章进行一下补充。
 
-#####谈谈居中
+###### 谈谈居中
+
+<!-- more -->
 
 居中分为水平居中与垂直居中。
 
@@ -29,21 +31,19 @@ date: 2015-07-18 10:01:00
 
 如果允许使用css3的新特性，flexbox布局以及tranform中的translate都是很好用的。
 
-<!-- more -->
+###### 水平居中
 
-######水平居中
-
-######1.文字水平居中
+###### 1.文字水平居中
 
 比较简单，一般是父元素设置text-align:center;就够了。
 
 <iframe width="100%" height="300" src="//jsfiddle.net/c05vjL6w/5/embedded/" allowfullscreen="allowfullscreen" frameborder="0"></iframe>
 
-######2.定宽元素水平居中 && 父元素也定宽
+###### 2.定宽元素水平居中 && 父元素也定宽
 
 父元素左右等padding或子元素左右等margin即可。
 
-######3.定宽元素水平居中 && 父元素宽度未知
+###### 3.定宽元素水平居中 && 父元素宽度未知
 
 父元素宽度未知的情况比较常见，比如一般页面的container都限制在960px左右，无论浏览器视口宽度有多大都要保证居中：
 
@@ -55,7 +55,7 @@ date: 2015-07-18 10:01:00
 
 <iframe width="100%" height="300" src="//jsfiddle.net/eq439zqp/2/embedded/" allowfullscreen="allowfullscreen" frameborder="0"></iframe>
 
-######4.未知宽度元素水平居中
+###### 4.未知宽度元素水平居中
 
 * 如果要居中的元素允许转化为inline-block，例如某些按钮，那么可以结合`text-align:center;`来做。父元素设定`text-align:center;`，子元素设为`display:inline-block`。
 
@@ -77,17 +77,17 @@ date: 2015-07-18 10:01:00
 
 对于定宽元素这几种方法也适用。
 
-######垂直居中
+###### 垂直居中
 
-######1.文字垂直居中
+###### 1.文字垂直居中
 
 对于一行文字，直接令line-height值===height值即可。
 
-######2.定高元素垂直居中 && 父元素也定高
+###### 2.定高元素垂直居中 && 父元素也定高
 
 父元素上下等padding或子元素上下等margin即可。
 
-######3.定高元素垂直居中 && 父元素高度自适应
+###### 3.定高元素垂直居中 && 父元素高度自适应
 
 * 类似水平居中的方式，position:relative;top:50%;margin-top:-高度一半;
 在实验过程中发现出现了重叠外边距问题，给父元素加个overflow激活一下bfc可以解决。
@@ -104,7 +104,7 @@ date: 2015-07-18 10:01:00
 
 <iframe width="100%" height="300" src="//jsfiddle.net/hbzk7hyn/2/embedded/" allowfullscreen="allowfullscreen" frameborder="0"></iframe>
 
-######额外补充
+###### 额外补充
 
 * 表格布局
 
@@ -126,7 +126,7 @@ date: 2015-07-18 10:01:00
 
 居中这部分坑大无比，情况非常复杂多变，还会有许多特殊情况，随见到随收集。参考资料里会先放一些。
 
-#####flexbox
+##### flexbox
 
 flexbox是css3中的一个新的布局模式。久闻大名，最近在一个页面中大量应用，写起来真是爽啊——，现在小小总结一下。
 
