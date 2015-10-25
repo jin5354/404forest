@@ -7,3 +7,5 @@ public/
 themes/
 scaffolds/
 .deploy*/
+*.jpg
+*.png
