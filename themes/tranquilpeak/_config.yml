@@ -60,7 +60,7 @@ sidebar:
             icon: github
         lib:
             title: Library
-            url: https://lib.404forest.com/
+            url: http://lib.404forest.com/
             icon: book
         # linked_in:
         #     title: global.linked_in
