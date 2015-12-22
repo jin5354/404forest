@@ -6,9 +6,6 @@ tags:
   - HTTPS
   - TCP
 date: 2015-09-06 10:11:41
-coverImage: firefox.jpg
-thumbnailImage: teapot.jpg
-coverMeta: out
 ---
 
 《HTTP权威指南》看起来厚厚的600多页，读起来确意外的轻松。不过对于这种工具书，通读一遍之后往往有种“学了好多新知识，但啥也没记住”的感觉。于是速读了第二遍并做了些笔记。
