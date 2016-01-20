@@ -6,9 +6,6 @@ tags:
   - Nodejs
   - Raspberry Pi
 date: 2015-09-08 10:49:41
-coverImage: gpio.png
-thumbnailImage: gpio-t.jpg
-coverMeta: out
 ---
 
 尝试使用pi-gpio来控制树莓派GPIO，踩坑一晚，特此记录。

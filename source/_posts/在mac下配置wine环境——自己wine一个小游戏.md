@@ -7,9 +7,6 @@ tags:
   - mac
   - windows
 date: 2015-10-12 21:55:41
-coverImage: tfdf-large.png
-thumbnailImage: tfdf.jpg
-coverMeta: out
 ---
 
 当我们想要在 mac 上运行 labview 等 windows 下的大型软件时，使用 PD 等虚拟机可以很好的解决需求；然而如果我们只想玩些同人小游戏什么的，再开一个操作系统就觉得有点累赘了，这时我们可以选择[wine](https://www.winehq.org/)，更加轻量的执行 windows 应用。

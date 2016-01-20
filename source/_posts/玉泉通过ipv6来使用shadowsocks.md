@@ -6,9 +6,6 @@ tags:
   - shadowsocks
   - GFW
 date: 2015-10-13 02:35:41
-coverImage: cover.jpg
-thumbnailImage: thumbnail.jpg
-coverMeta: out
 ---
 
 今年暑假期间GFW大升级，在机器学习、数据挖掘、深度包检测等装备全面部署下的GFW火力大大提升，导致杭州电信环境下shadowsocks可用性大幅降低，在Linode、DO、conoha等家的vps上架设的shadowsocks被打击严重，难以正常使用。试用ipv6，发现效果还可以，可能功夫网gfw对ipv6的针对力度还不大。下面说一下流程。

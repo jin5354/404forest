@@ -8,9 +8,6 @@ tags:
   - canvas
   - Animation
 date: 2015-08-24 20:47:41
-coverImage: velocity.jpg
-thumbnailImage: velocity_t.jpg
-coverMeta: out
 ---
 
 一个有关 Animation 的小小分享。

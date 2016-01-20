@@ -4,9 +4,6 @@ categories:
 tags:
   - WebKit
 date: 2015-10-25 19:48:41
-coverImage: code.jpg
-thumbnailImage: code-small.jpg
-coverMeta: out
 ---
 
 最近把《WebKit技术内幕》这本书读了一遍。这本书其实更适合浏览器开发工程师来看，对于我这种前端工程师来说，可能没必要深究某处实现的细节，书中有的地方如果能讲的更抽象些就更好了。这里把脑图存一下档。

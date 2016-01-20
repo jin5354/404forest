@@ -7,9 +7,6 @@ tags:
   - 兼容性
   - flex
 date: 2015-12-17 16:20:21
-coverImage: code.jpg
-thumbnailImage: code-small.jpg
-coverMeta: out
 ---
 
 之前曾经写过文章介绍flexbox布局，这个玩意相比与传统的float布局，简直是大大解放了生产力。但是说到应用于生产的话，flex布局的兼容性实在是让人没信心。PC端彻底没戏，IE10才支持部分混合语法；不过caniuse上查阅到的移动端兼容性还算不错，Android2.1起开始支持旧语法，iOS safari从3.2开始支持旧语法。在v2上查阅了些帖子，很多人说移动端上兼容是坑，不过观察可知，大部分人都没有专门去研究旧语法。flex在移动端表现究竟如何，本文来探讨下这个话题。
