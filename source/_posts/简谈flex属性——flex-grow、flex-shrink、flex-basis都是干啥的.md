@@ -78,8 +78,6 @@ Example： flexbox等分布局
 
 初始尺寸(110, 120, 130) - 60 * (1/3) = 90, 100, 110px
 
-如果我们给这三个元素均指定为flex:1；结果如下：
-
 <a class="jsbin-embed" href="http://jsbin.com/fixapu/10/embed">JS Bin on jsbin.com</a><script src="http://static.jsbin.com/js/embed.min.js?3.35.9"></script>
 
 若给这三个元素指定flex-shrink分别为1，3，5 可知：

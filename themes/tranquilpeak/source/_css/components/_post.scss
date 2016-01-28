@@ -27,8 +27,17 @@
             color: map-get($colors, light);
         }
     }
+    .toc-article {
+        margin-top:  60px;
+
+        .toc-title {
+            margin: 0;
+        }
+        li {
+            list-style-type: none;
+        }
+    }
     .post-content {
-        font-family: 'Merriweather', serif;
         color:       map-get($colors, base);
         margin-top:  60px;
         font-weight: 300;

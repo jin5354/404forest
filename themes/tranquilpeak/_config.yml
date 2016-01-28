@@ -62,14 +62,14 @@ sidebar:
             title: Library
             url: http://lib.404forest.com/
             icon: book
-        # linked_in:
-        #     title: global.linked_in
-        #     url: https://www.linkedin.com/profile/
-        #     icon: linkedin
-        # mail:
-        #     title: global.mail
-        #     url: mailto:
-        #     icon: envelope-o
+        weibo:
+            title: Weibo
+            url: http://weibo.com/207466606
+            icon: weibo
+        mail:
+            title: Mail
+            url: mailto:i@404forest.com
+            icon: envelope-o
 
 # Header configuration
 # The link at the right of the header is customizable
@@ -86,9 +86,9 @@ header:
 # Your biography and your job is editable in each languages files in `languages` folder
 author:
     email: xiaoyanjinx@gmail.com
-    bio:  Hi, I'm jin, and I'm interested in Web Development/Degisn/Typography/Anime/Japanese.
+    bio:  Interested in Web Development/Typography/Japanese.
     job: WebDeveloper
-    location: HangZhou
+    location: Beijing
     # Your profile picture located in folder `source/_images/` (development)
     # or in `source/assets/images/` (production).
     # Overwritten by your gravatar image if `gravatar_image` is enabled

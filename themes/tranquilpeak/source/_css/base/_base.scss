@@ -20,7 +20,7 @@ body {
     line-height:    $line-height-base;
     letter-spacing: $letter-spacing-base;
     // Improve smoothing of the font by adding subpixel in Safari
-    @include prefix(font-smoothing, subpixel-antialiased, 'webkit');
+    @include prefix(font-smoothing, antialiased, 'webkit');
 
     // Hide overflow-x when the sidebar is swiped
     &.pushed {
@@ -138,6 +138,11 @@ blockquote {
         }
 
     }
+}
+
+::selection {
+    background-color: #2aa198;
+    color: #fff;
 }
 
 // Reduce global font-size base and headings font size on small screen and down

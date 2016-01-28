@@ -27,6 +27,13 @@
     <% if (!post.coverImage || post.coverMeta === 'out') { %>
         <%- partial('post/header')%>
     <% } %>
+    <!-- Table of Contents -->
+    <% if (post.toc){ %>
+      <div id="toc" class="toc-article main-content-wrap">
+        <p class="toc-title">索引</p>
+        <%- toc(post.content) %>
+      </div>
+    <% } %>
     <div class="post-content markdown" itemprop="articleBody">
         <div class="main-content-wrap">
             <%- post.content %>
