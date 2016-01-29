@@ -297,5 +297,364 @@ JavaScript能够准确表示的整数范围在-2^53到2^53之间（不含两个�
 
 Array.from方法用于将两类对象转为真正的数组：类似数组的对象（array-like object）和可遍历（iterable）的对象（包括ES6新增的数据结构Set和Map）。实际应用中，常见的类似数组的对象是DOM操作返回的NodeList集合，以及函数内部的arguments对象。Array.from都可以将它们转为真正的数组。
 
-## 
+- 值得提醒的是，扩展运算符（...）也可以将某些数据结构转为数组。
+- 对于还没有部署该方法的浏览器，可以用Array.prototype.slice方法替代。
+- Array.from()的另一个应用是，将字符串转为数组，然后返回字符串的长度。因为它能正确处理各种Unicode字符，可以避免JavaScript将大于\uFFFF的Unicode字符，算作两个字符的bug。
+
+## Array.of() 将一组值转换为数组
+
+```
+Array.of(3, 11, 8) // [3,11,8]
+```
+
+这个方法的主要目的，是弥补数组构造函数Array()的不足。因为参数个数的不同，会导致Array()的行为有差异。Array.of基本上可以用来替代Array()或new Array()，并且不存在由于参数不同而导致的重载。它的行为非常统一。
+
+## Array.prototype.copyWithin() 将数组指定位置成员复制到其他位置后返回数组
+
+```
+[1, 2, 3, 4, 5].copyWithin(0, 3)
+// [4, 5, 3, 4, 5]
+```
+
+它接受三个参数。
+
+- target（必需）：从该位置开始替换数据。
+- start（可选）：从该位置开始读取数据，默认为0。如果为负值，表示倒数。
+- end（可选）：到该位置前停止读取数据，默认等于数组长度。如果为负值，表示倒数。
+
+## Array.prototype.find() 找出第一个符合条件的数组成员
+
+数组实例的find方法，用于找出第一个符合条件的数组成员。它的参数是一个回调函数，所有数组成员依次执行该回调函数，直到找出第一个返回值为true的成员，然后返回该成员。如果没有符合条件的成员，则返回undefined。
+
+```
+[1, 4, -5, 10].find((n) => n < 0)
+// -5
+```
+
+## Array.prototype.findIndex() 返回第一个符合条件的数组成员的位置
+
+用法与find方法非常类似。
+
+## Array.prototype.fill() 用指定值填充数组
+
+fill方法使用给定值，填充一个数组。
+
+```
+['a', 'b', 'c'].fill(7)
+// [7, 7, 7]
+```
+
+## Array.prototype.entries()/keys()/values() 用于遍历数组并返回一个遍历器对象
+
+ES6提供三个新的方法——entries()，keys()和values()——用于遍历数组。它们都返回一个遍历器对象（详见《Iterator》一章），可以用for...of循环进行遍历，唯一的区别是keys()是对键名的遍历、values()是对键值的遍历，entries()是对键值对的遍历。
+
+```
+for (let index of ['a', 'b'].keys()) {
+  console.log(index);
+}
+// 0
+// 1
+
+for (let elem of ['a', 'b'].values()) {
+  console.log(elem);
+}
+// 'a'
+// 'b'
+
+for (let [index, elem] of ['a', 'b'].entries()) {
+  console.log(index, elem);
+}
+// 0 "a"
+// 1 "b"
+```
+
+## Array.prototype.includes() 检查数组是否包含给定的值 （ES7）
+```
+[1, 2, 3].includes(2);     // true
+```
+
+## 数组的空位
+
+数组的空位指，数组的某一个位置没有任何值。比如，Array构造函数返回的数组都是空位。`Array(3) // [, , ,]`
+
+ES5对空位的处理，已经很不一致了，大多数情况下会忽略空位。
+
+- forEach(), filter(), every() 和some()都会跳过空位。
+- map()会跳过空位，但会保留这个值
+- join()和toString()会将空位视为undefined，而undefined和null会被处理成空字符串。
+
+ES6则是明确将空位转为undefined。
+
+- Array.from方法会将数组的空位，转为undefined，也就是说，这个方法不会忽略空位。
+- 扩展运算符（...）也会将空位转为undefined。
+- copyWithin()会连空位一起拷贝。
+- fill()会将空位视为正常的数组位置。
+- for...of循环也会遍历空位。
+- entries()、keys()、values()、find()和findIndex()会将空位处理成undefined。
+
+由于空位的处理规则非常不统一，所以建议避免出现空位。
+
+## 数组推导 （ES7）
+
+数组推导（array comprehension）提供简洁写法，允许直接通过现有数组生成新数组。
+
+```
+var a1 = [1, 2, 3, 4];
+var a2 = [for (i of a1) i * 2];
+
+a2 // [2, 4, 6, 8]
+```
+
+----
+
+# 函数的扩展
+
+## 函数参数的默认值
+
+ES6允许为函数的参数设置默认值，即直接写在参数定义的后面。
+
+```
+function log(x, y = 'World') {
+  console.log(x, y);
+}
+```
+
+默认声明的参数变量在函数体中不能用let或const再次声明，否则会报错。
+
+参数默认值可以与解构赋值的默认值，结合起来使用。
+
+```
+function foo({x, y = 5}) {
+  console.log(x, y);
+}
+```
+
+如果传入undefined，将触发该参数等于默认值，null则没有这个效果。
+
+## 函数的length属性
+
+指定了默认值以后，函数的length属性，将返回没有指定默认值的参数个数。也就是说，指定了默认值后，length属性将失真。
+
+```
+(function(a){}).length // 1
+(function(a = 5){}).length // 0
+(function(a, b, c = 5){}).length // 2
+```
+
+一个需要注意的地方是，如果参数默认值是一个变量，则该变量所处的作用域，与其他变量的作用域规则是一样的，即先是当前函数的作用域，然后才是全局作用域。
+
+```
+let x = 1;
+
+function f(y = x) {
+  let x = 2;
+  console.log(y);
+}
+
+f() // 1
+```
+
+## rest参数
+
+ES6引入rest参数（形式为“...变量名”），用于获取函数的多余参数，这样就不需要使用arguments对象了。rest参数搭配的变量是一个数组，该变量将多余的参数放入数组中。
+
+```
+function add(...values) {
+  let sum = 0;
+
+  for (var val of values) {
+    sum += val;
+  }
+
+  return sum;
+}
+
+add(2, 5, 3) // 10
+```
+
+## 扩展运算符
+
+扩展运算符（spread）是三个点（...）。它好比rest参数的逆运算，将一个数组转为用逗号分隔的参数序列。
+
+```
+console.log(...[1, 2, 3])
+// 1 2 3
+
+console.log(1, ...[2, 3, 4], 5)
+// 1 2 3 4 5
+```
+
+可替代数组的apply方法。
+
+应用：
+
+- 合并数组 `[1, 2, ...more]`
+- 与解构赋值结合 `[a, ...rest] = list`
+- 与函数返回值结合
+- 将字符串转为真正的数组，能够正确识别32位的Unicode字符。
+- 任何Iterator接口的对象，都可以用扩展运算符转为真正的数组。
+
+## name属性 返回该函数的函数名
+
+函数的name属性，返回该函数的函数名。
+
+```
+function foo() {}
+foo.name // "foo"
+```
+
+- Function构造函数返回的函数实例，name属性的值为“anonymous”。
+- bind返回的函数，name属性值会加上“bound ”前缀。
+
+## 箭头函数
+
+ES6允许使用“箭头”（=>）定义函数。
+
+```
+var f = v => v;
+var f = function(v) {
+  return v;
+};
+```
+
+- 如果箭头函数不需要参数或需要多个参数，就使用一个圆括号代表参数部分。
+- 如果箭头函数的代码块部分多于一条语句，就要使用大括号将它们括起来，并且使用return语句返回。
+- 由于大括号被解释为代码块，所以如果箭头函数直接返回一个对象，必须在对象外面加上圆括号。
+- 箭头函数可以与变量解构结合使用。
+- 箭头函数可以与rest参数结合使用。
+
+箭头函数有几个使用注意点:
+
+- 函数体内的this对象，就是定义时所在的对象，而不是使用时所在的对象。
+- 不可以当作构造函数，也就是说，不可以使用new命令，否则会抛出一个错误。
+- 不可以使用arguments对象，该对象在函数体内不存在。如果要用，可以用Rest参数代替。
+- 不可以使用yield命令，因此箭头函数不能用作Generator函数。
+
+## 函数绑定 (ES7)
+
+箭头函数可以绑定this对象，大大减少了显式绑定this对象的写法（call、apply、bind）。但是，箭头函数并不适用于所有场合，所以ES7提出了“函数绑定”（function bind）运算符，用来取代call、apply、bind调用。虽然该语法还是ES7的一个提案，但是Babel转码器已经支持。
+
+函数绑定运算符是并排的两个双冒号（::），双冒号左边是一个对象，右边是一个函数。该运算符会自动将左边的对象，作为上下文环境（即this对象），绑定到右边的函数上面。
+
+```
+foo::bar;
+// 等同于
+bar.bind(foo);
+
+foo::bar(...arguments);
+// 等同于
+bar.apply(foo, arguments);
+```
+
+# 对象扩展
+
+## 属性的简洁表示法
+
+ES6允许直接写入变量和函数，作为对象的属性和方法。这样的书写更加简洁。
+
+```
+var birth = '2000/01/01';
+
+var Person = {
+  name: '张三',
+  //等同于birth: birth
+  birth,
+  // 等同于hello: function ()...
+  hello() { console.log('我的名字是', this.name); }
+};
+```
+
+## 属性名表达式
+
+ES6允许字面量定义对象时，用方法二（表达式）作为对象的属性名，即把表达式放在方括号内。
+
+```
+let propKey = 'foo';
+
+let obj = {
+  [propKey]: true,
+  ['a' + 'bc']: 123
+};
+```
+注意，属性名表达式与简洁表示法，不能同时使用，会报错。
+
+## 方法的name属性 返回方法名
+
+函数的name属性，返回函数名。对象方法也是函数，因此也有name属性。
+
+## Object.is() 比较两个值是否严格相等
+
+ES6提出“Same-value equality”（同值相等）算法，用来解决这个问题。Object.is就是部署这个算法的新方法。它用来比较两个值是否严格相等，与严格比较运算符（===）的行为基本一致。
+
+不同之处只有两个：一是+0不等于-0，二是NaN等于自身。
+
+```
++0 === -0 //true
+NaN === NaN // false
+
+Object.is(+0, -0) // false
+Object.is(NaN, NaN) // true
+```
+
+## Object.assign() 将源对象的所有可枚举属性，复制到目标对象上
+
+Object.assign方法用来将源对象（source）的所有可枚举属性，复制到目标对象（target）。它至少需要两个对象作为参数，第一个参数是目标对象，后面的参数都是源对象。只要有一个参数不是对象，就会抛出TypeError错误。
+
+```
+var target = { a: 1 };
+var source1 = { b: 2 };
+var source2 = { c: 3 };
+
+Object.assign(target, source1, source2);
+target // {a:1, b:2, c:3}
+```
+用途：
+
+- 为对象添加属性
+- 为对象添加方法
+- 克隆对象
+- 合并多个对象
+- 为属性指定默认值
+
+## 属性的可枚举性
+
+对象的每个属性都有一个描述对象（Descriptor），用来控制该属性的行为。Object.getOwnPropertyDescriptor方法可以获取该属性的描述对象。
+
+ES5有三个操作会忽略enumerable为false的属性。
+
+- for...in 循环：只遍历对象自身的和继承的可枚举的属性
+- Object.keys()：返回对象自身的所有可枚举的属性的键名
+- JSON.stringify()：只串行化对象自身的可枚举的属性
+
+ES6新增了两个操作，会忽略enumerable为false的属性。
+
+- Object.assign()：只拷贝对象自身的可枚举的属性
+- Reflect.enumerate()：返回所有for...in循环会遍历的属性
+
+## 属性的遍历
+
+ES6一共有6种方法可以遍历对象的属性。
+
+1. `for...in` for...in循环遍历对象自身的和继承的可枚举属性（不含Symbol属性）。
+2. `Object.keys(obj)`Object.keys返回一个数组，包括对象自身的（不含继承的）所有可枚举属性（不含Symbol属性）。
+3. `Object.getOwnPropertyNames(obj)`Object.getOwnPropertyNames返回一个数组，包含对象自身的所有属性（不含Symbol属性，但是包括不可枚举属性）。
+4.`Object.getOwnPropertySymbols(obj)`Object.getOwnPropertySymbols返回一个数组，包含对象自身的所有Symbol属性。
+5.`Reflect.ownKeys(obj)`Reflect.ownKeys返回一个数组，包含对象自身的所有属性，不管是属性名是Symbol或字符串，也不管是否可枚举。
+6.`Reflect.enumerate(obj)`Reflect.enumerate返回一个Iterator对象，遍历对象自身的和继承的所有可枚举属性（不含Symbol属性），与for...in循环相同。
+
+## __proto__属性，Object.setPrototypeOf()，Object.getPrototypeOf()
+
+__proto__属性（前后各两个下划线），用来读取或设置当前对象的prototype对象。目前，所有浏览器（包括IE11）都部署了这个属性。该属性没有写入ES6的正文，而是写入了附录，原因是__proto__前后的双下划线，说明它本质上是一个内部属性，而不是一个正式的对外的API，只是由于浏览器广泛支持，才被加入了ES6。标准明确规定，只有浏览器必须部署这个属性，其他运行环境不一定需要部署，而且新的代码最好认为这个属性是不存在的。因此，无论从语义的角度，还是从兼容性的角度，都不要使用这个属性，而是使用下面的Object.setPrototypeOf()（写操作）、Object.getPrototypeOf()（读操作）、Object.create()（生成操作）代替。
+
+Object.setPrototypeOf方法的作用与__proto__相同，用来设置一个对象的prototype对象。它是ES6正式推荐的设置原型对象的方法。
+
+Object.getPrototypeOf方法与setPrototypeOf方法配套，用于读取一个对象的prototype对象。
+
+# 新的原始数据类型Symbol
+
+## 概述
+
+ES6引入了一种新的原始数据类型Symbol，表示独一无二的值。它是JavaScript语言的第七种数据类型，前六种是：Undefined、Null、布尔值（Boolean）、字符串（String）、数值（Number）、对象（Object）。
+
+Symbol值通过Symbol函数生成。这就是说，对象的属性名现在可以有两种类型，一种是原来就有的字符串，另一种就是新增的Symbol类型。凡是属性名属于Symbol类型，就都是独一无二的，可以保证不会与其他属性名产生冲突。
 
