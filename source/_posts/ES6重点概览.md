@@ -5,7 +5,7 @@ tags:
   - javascript
   - ES6
 toc: true
-date: 2016-01-28 16:40:11
+date: 2016-03-13 18:25:11
 ---
 
 # let 与 const
@@ -650,11 +650,542 @@ Object.setPrototypeOf方法的作用与__proto__相同，用来设置一个对�
 
 Object.getPrototypeOf方法与setPrototypeOf方法配套，用于读取一个对象的prototype对象。
 
-# 新的原始数据类型Symbol
+----
 
-## 概述
+# 新的原始数据类型Symbol
 
 ES6引入了一种新的原始数据类型Symbol，表示独一无二的值。它是JavaScript语言的第七种数据类型，前六种是：Undefined、Null、布尔值（Boolean）、字符串（String）、数值（Number）、对象（Object）。
 
 Symbol值通过Symbol函数生成。这就是说，对象的属性名现在可以有两种类型，一种是原来就有的字符串，另一种就是新增的Symbol类型。凡是属性名属于Symbol类型，就都是独一无二的，可以保证不会与其他属性名产生冲突。
 
+```
+let s = Symbol();
+
+typeof s
+// "symbol"
+```
+
+注意，Symbol函数前不能使用new命令，否则会报错。这是因为生成的Symbol是一个原始类型的值，不是对象。也就是说，由于Symbol值不是对象，所以不能添加属性。基本上，它是一种类似于字符串的数据类型。Symbol函数可以接受一个字符串作为参数，表示对Symbol实例的描述，主要是为了在控制台显示，或者转为字符串时，比较容易区分。
+
+Symbol值不能与其他类型的值进行运算，会报错。Symbol值可以显式转为字符串和布尔值。
+
+实例：消除魔术字符串
+
+```
+function getArea(shape, options) {
+  var area = 0;
+
+  switch (shape) {
+    case 'Triangle': // 魔术字符串
+      area = .5 * options.width * options.height;
+      break;
+    /* ... more code ... */
+  }
+
+  return area;
+}
+
+getArea('Triangle', { width: 100, height: 100 }); // 魔术字符串
+```
+
+上面代码中，字符串“Triangle”就是一个魔术字符串。它多次出现，与代码形成“强耦合”，不利于将来的修改和维护。
+
+常用的消除魔术字符串的方法，就是把它写成一个变量。
+
+```
+var shapeType = {
+  triangle: 'Triangle'
+};
+
+function getArea(shape, options) {
+  var area = 0;
+  switch (shape) {
+    case shapeType.triangle:
+      area = .5 * options.width * options.height;
+      break;
+  }
+  return area;
+}
+
+getArea(shapeType.triangle, { width: 100, height: 100 });
+```
+
+上面代码中，我们把“Triangle”写成shapeType对象的triangle属性，这样就消除了强耦合。
+
+如果仔细分析，可以发现shapeType.triangle等于哪个值并不重要，只要确保不会跟其他shapeType属性的值冲突即可。因此，这里就很适合改用Symbol值。
+
+```
+const shapeType = {
+  triangle: Symbol()
+};
+
+```
+上面代码中，除了将shapeType.triangle的值设为一个Symbol，其他地方都不用修改。
+
+----
+
+# Set和Map数据结构
+
+ES6提供了新的数据结构Set。它类似于数组，但是成员的值都是唯一的，没有重复的值。Set本身是一个构造函数，用来生成Set数据结构。
+
+```
+var s = new Set();
+
+[2,3,5,4,5,2,2].map(x => s.add(x))
+
+for (let i of s) {console.log(i)}
+// 2 3 5 4
+```
+
+Set函数可以接受一个数组（或类似数组的对象）作为参数，用来初始化。
+
+```
+var set = new Set([1, 2, 3, 4, 4])
+[...set]
+// [1, 2, 3, 4]
+```
+
+另外，两个对象总是不相等的。
+
+JavaScript的对象（Object），本质上是键值对的集合（Hash结构），但是只能用字符串当作键。这给它的使用带来了很大的限制。为了解决这个问题，ES6提供了Map数据结构。它类似于对象，也是键值对的集合，但是“键”的范围不限于字符串，各种类型的值（包括对象）都可以当作键。也就是说，Object结构提供了“字符串—值”的对应，Map结构提供了“值—值”的对应，是一种更完善的Hash结构实现。如果你需要“键值对”的数据结构，Map比Object更合适。
+
+```
+var m = new Map();
+var o = {p: "Hello World"};
+
+m.set(o, "content")
+m.get(o) // "content"
+
+m.has(o) // true
+m.delete(o) // true
+m.has(o) // false
+```
+
+## Set.prototype.add(value) 添加某个值
+
+添加某个值，返回Set结构本身。
+
+## Set.prototype.delete(value) 删除某个值
+
+删除某个值，返回一个布尔值，表示删除是否成功。
+
+## Set.prototype.has(value) 检查该值是否为Set的成员
+
+返回一个布尔值，表示该值是否为Set的成员。
+
+## Set.prototype.clear() 清除所有成员
+
+清除所有成员，没有返回值。
+
+## Map.prototype.size 成员总数
+
+size属性返回Map结构的成员总数。
+
+## Map.prototype.set(key, value) 设置key所对应的键值
+
+set方法设置key所对应的键值，然后返回整个Map结构。如果key已经有值，则键值会被更新，否则就新生成该键。
+
+## Map.prototype.get(key) 读取key对应的键值
+
+get方法读取key对应的键值，如果找不到key，返回undefined。
+
+## Map.prototype.has(key) 检查某个键是否在Map数据结构中
+
+has方法返回一个布尔值，表示某个键是否在Map数据结构中。
+
+## Map.prototype.delete(key) 删除某个键
+
+delete方法删除某个键，返回true。如果删除失败，返回false。
+
+## Map.prototype.clear() 清除所有成员
+
+clear方法清除所有成员，没有返回值。
+
+----
+
+# Iterator和for...of循环
+
+## Iterator（遍历器）
+
+遍历器（Iterator）是一种接口，为各种不同的数据结构提供统一的访问机制。任何数据结构只要部署Iterator接口，就可以完成遍历操作（即依次处理该数据结构的所有成员）。
+
+Iterator的作用有三个：一是为各种数据结构，提供一个统一的、简便的访问接口；二是使得数据结构的成员能够按某种次序排列；三是ES6创造了一种新的遍历命令for...of循环，Iterator接口主要供for...of消费。
+
+在ES6中，有三类数据结构原生具备Iterator接口：数组、某些类似数组的对象、Set和Map结构。
+
+## for...of循环
+
+ES6借鉴C++、Java、C#和Python语言，引入了for...of循环，作为遍历所有数据结构的统一的方法。一个数据结构只要部署了Symbol.iterator属性，就被视为具有iterator接口，就可以用for...of循环遍历它的成员。也就是说，for...of循环内部调用的是数据结构的Symbol.iterator方法。
+
+for...of循环可以使用的范围包括数组、Set和Map结构、某些类似数组的对象（比如arguments对象、DOM NodeList对象）、后文的Generator对象，以及字符串。
+
+for...of循环可以代替数组实例的forEach方法。
+
+```
+const arr = ['red', 'green', 'blue'];
+let iterator  = arr[Symbol.iterator]();
+
+for(let v of arr) {
+  console.log(v); // red green blue
+}
+
+for(let v of iterator) {
+  console.log(v); // red green blue
+}
+```
+JavaScript原有的for...in循环，只能获得对象的键名，不能直接获取键值。ES6提供for...of循环，允许遍历获得键值。
+
+## 与其他遍历语法的比较
+
+- for循环, 比较麻烦。
+
+```
+for (var index = 0; index < myArray.length; index++) {
+  console.log(myArray[index]);
+}
+```
+
+- forEach, 无法中途跳出forEach循环，break命令或return命令都不能奏效。
+
+```
+myArray.forEach(function (value) {
+  console.log(value);
+});
+
+```
+
+- for...in循环可以遍历数组的键名
+
+```
+for (var index in myArray) {
+  console.log(myArray[index]);
+}
+```
+
+for...in循环有几个缺点。
+
+- 数组的键名是数字，但是for...in循环是以字符串作为键名“0”、“1”、“2”等等。
+- for...in循环不仅遍历数字键名，还会遍历手动添加的其他键，甚至包括原型链上的键。
+- 某些情况下，for...in循环会以任意顺序遍历键名。
+- 总之，for...in循环主要是为遍历对象而设计的，不适用于遍历数组。
+
+for...of循环相比上面几种做法，有一些显著的优点。
+
+```
+for (let value of myArray) {
+  console.log(value);
+}
+```
+
+- 有着同for...in一样的简洁语法，但是没有for...in那些缺点。
+- 不同用于forEach方法，它可以与break、continue和return配合使用。
+- 提供了遍历所有数据结构的统一操作接口。
+
+----
+
+# Class
+
+基本上，ES6的class可以看作只是一个语法糖，它的绝大部分功能，ES5都可以做到，新的class写法只是让对象原型的写法更加清晰、更像面向对象编程的语法而已。
+
+```
+//定义类
+class Point {
+
+  constructor(x, y) {
+    this.x = x;
+    this.y = y;
+  }
+
+  toString() {
+    return '(' + this.x + ', ' + this.y + ')';
+  }
+
+}
+
+```
+ES5版本：
+
+```
+function Point(x,y){
+  this.x = x;
+  this.y = y;
+}
+
+Point.prototype.toString = function () {
+  return '(' + this.x + ', ' + this.y + ')';
+}
+```
+
+ES6的类，完全可以看作构造函数的另一种写法。
+
+类的内部所有定义的方法，都是不可枚举的（enumerable）。这一点与ES5的行为不一致。类的属性名，可以采用表达式。
+
+生成实例对象的写法，与ES5完全一样，也是使用new命令。
+
+```
+// 报错
+var point = Point(2, 3);
+
+// 正确
+var point = new Point(2, 3);
+```
+
+## Class表达式
+
+与函数一样，Class也可以使用表达式的形式定义。
+
+```
+const MyClass = class Me {
+  getClassName() {
+    return Me.name;
+  }
+};
+```
+
+上面代码使用表达式定义了一个类。需要注意的是，这个类的名字是MyClass而不是Me，Me只在Class的内部代码可用，指代当前类。
+
+```
+let inst = new MyClass();
+inst.getClassName() // Me
+Me.name // ReferenceError: Me is not defined
+```
+
+上面代码表示，Me只在Class内部有定义。
+
+如果Class内部没用到的话，可以省略Me，也就是可以写成下面的形式。
+
+```
+const MyClass = class { /* ... */ };
+```
+
+采用Class表达式，可以写出立即执行的Class。
+
+```
+let person = new class {
+  constructor(name) {
+    this.name = name;
+  }
+
+  sayName() {
+    console.log(this.name);
+  }
+}("张三");
+
+person.sayName(); // "张三"
+```
+
+Class不存在变量提升（hoist）这一点与ES5完全不同。类和模块的内部，默认就是严格模式，所以不需要使用use strict指定运行模式。
+
+## Class的继承
+
+Class之间可以通过extends关键字实现继承，这比ES5的通过修改原型链实现继承，要清晰和方便很多。
+
+```
+class ColorPoint extends Point {
+
+  constructor(x, y, color) {
+    super(x, y); // 调用父类的constructor(x, y)
+    this.color = color;
+  }
+
+  toString() {
+    return this.color + ' ' + super.toString(); // 调用父类的toString()
+  }
+
+}
+```
+
+super关键字，它指代父类的实例。子类必须在constructor方法中调用super方法，否则新建实例时会报错。这是因为子类没有自己的this对象，而是继承父类的this对象，然后对其进行加工。如果不调用super方法，子类就得不到this对象。
+
+## 原生构造函数的继承
+
+原生构造函数是指语言内置的构造函数，通常用来生成数据结构。ECMAScript的原生构造函数大致有下面这些。
+
+- Boolean()
+- Number()
+- String()
+- Array()
+- Date()
+- Function()
+- RegExp()
+- Error()
+- Object()
+
+以前，这些原生构造函数是无法继承的，比如，不能自己定义一个Array的子类。之所以会发生这种情况，是因为子类无法获得原生构造函数的内部属性，通过Array.apply()或者分配给原型对象都不行。
+
+ES6允许继承原生构造函数定义子类，因为ES6是先新建父类的实例对象this，然后再用子类的构造函数修饰this，使得父类的所有行为都可以继承。下面是一个继承Array的例子。
+
+```
+class MyArray extends Array {
+  constructor(...args) {
+    super(...args);
+  }
+}
+
+var arr = new MyArray();
+arr[0] = 12;
+arr.length // 1
+
+arr.length = 0;
+arr[0] // undefined
+```
+
+## Class的取值函数（getter）和存值函数（setter） 
+
+与ES5一样，在Class内部可以使用get和set关键字，对某个属性设置存值函数和取值函数，拦截该属性的存取行为。
+
+```
+lass MyClass {
+  constructor() {
+    // ...
+  }
+  get prop() {
+    return 'getter';
+  }
+  set prop(value) {
+    console.log('setter: '+value);
+  }
+}
+
+let inst = new MyClass();
+
+inst.prop = 123;
+// setter: 123
+
+inst.prop
+// 'getter'
+```
+
+## Class的静态方法
+
+类相当于实例的原型，所有在类中定义的方法，都会被实例继承。如果在一个方法前，加上static关键字，就表示该方法不会被实例继承，而是直接通过类来调用，这就称为“静态方法”。
+
+```
+class Foo {
+  static classMethod() {
+    return 'hello';
+  }
+}
+
+Foo.classMethod() // 'hello'
+
+var foo = new Foo();
+foo.classMethod()
+// TypeError: undefined is not a function
+```
+
+## Class的静态属性和实例属性
+
+静态属性指的是Class本身的属性，即Class.propname，而不是定义在实例对象（this）上的属性。
+
+```
+class Foo {
+}
+
+Foo.prop = 1;
+Foo.prop // 1
+```
+
+上面的写法为Foo类定义了一个静态属性prop。
+
+目前，只有这种写法可行，因为ES6明确规定，Class内部只有静态方法，没有静态属性。
+
+----
+
+# Module
+
+在ES6之前，社区制定了一些模块加载方案，最主要的有CommonJS和AMD两种。前者用于服务器，后者用于浏览器。ES6在语言规格的层面上，实现了模块功能，而且实现得相当简单，完全可以取代现有的CommonJS和AMD规范，成为浏览器和服务器通用的模块解决方案。
+
+ES6模块的设计思想，是尽量的静态化，使得编译时就能确定模块的依赖关系，以及输入和输出的变量。CommonJS和AMD模块，都只能在运行时确定这些东西。比如，CommonJS模块就是对象，输入时必须查找对象属性。
+
+ES6的模块自动采用严格模式，不管你有没有在模块头部加上"use strict"。
+
+## export
+
+模块功能主要由两个命令构成：export和import。export命令用于规定模块的对外接口，import命令用于输入其他模块提供的功能。
+
+一个模块就是一个独立的文件。该文件内部的所有变量，外部无法获取。如果你希望外部能够读取模块内部的某个变量，就必须使用export关键字输出该变量。下面是一个JS文件，里面使用export命令输出变量。
+
+```
+// profile.js
+export var firstName = 'Michael';
+export var lastName = 'Jackson';
+export var year = 1958;
+
+//另一种写法
+export {firstName, lastName, year};
+```
+
+通常情况下，export输出的变量就是本来的名字，但是可以使用as关键字重命名。
+
+```
+function v1() { ... }
+function v2() { ... }
+
+export {
+  v1 as streamV1,
+  v2 as streamV2,
+  v2 as streamLatestVersion
+};
+```
+
+export命令可以出现在模块的任何位置，只要处于模块顶层就可以。如果处于块级作用域内，就会报错，下一节的import命令也是如此。
+
+## import
+
+使用export命令定义了模块的对外接口以后，其他JS文件就可以通过import命令加载这个模块（文件）。
+
+```
+// main.js
+
+import {firstName, lastName, year} from './profile';
+
+function setName(element) {
+  element.textContent = firstName + ' ' + lastName;
+}
+```
+
+如果想为输入的变量重新取一个名字，import命令要使用as关键字，将输入的变量重命名。
+
+```
+import { lastName as surname } from './profile';
+```
+
+import语句会执行所加载的模块，因此可以有下面的写法。
+
+```
+import 'lodash';
+```
+
+## 模块的整体加载 
+
+除了指定加载某个输出值，还可以使用整体加载，即用星号（*）指定一个对象，所有输出值都加载在这个对象上面。
+
+```
+// main.js
+
+import * as circle from './circle';
+
+console.log('圆面积：' + area(4));
+console.log('圆周长：' + circumference(14));
+```
+
+## export default命令
+
+从前面的例子可以看出，使用import命令的时候，用户需要知道所要加载的变量名或函数名，否则无法加载。但是，用户肯定希望快速上手，未必愿意阅读文档，去了解模块有哪些属性和方法。
+
+为了给用户提供方便，让他们不用阅读文档就能加载模块，就要用到export default命令，为模块指定默认输出。
+
+```
+// export-default.js
+export default function () {
+  console.log('foo');
+}
+```
+
+其他模块加载该模块时，import命令可以为该匿名函数指定任意名字。
+
+```
+import customName from './export-default';
+customName(); // 'foo'
+```
