@@ -3801,12 +3801,10 @@ a.link-unstyled a.link, a.link-unstyled a.link:hover, a.link-unstyled a.link:act
     color: #9eabb3; }
     .post .post-meta a {
       color: #9eabb3; }
-  .post .toc-article {
-    margin-top: 60px; }
-    .post .toc-article .toc-title {
-      margin: 0; }
-    .post .toc-article li {
-      list-style-type: none; }
+  .post .toc-article .toc-title {
+    margin: 0; }
+  .post .toc-article li {
+    list-style-type: none; }
   .post .post-content {
     color: #5d686f;
     margin-top: 60px;

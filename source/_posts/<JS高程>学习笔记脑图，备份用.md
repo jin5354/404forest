@@ -8,9 +8,9 @@ date: 2015-04-06 21:38:00
 ---
 分享一下，都是在百度脑图上边看书边绘制的。如果有新内容，会修订，有的地方需要详述就单开一个post。
 
-DOM：
-
 <!-- more -->
+
+DOM：
 
 ![DOM](http://my404forest.qiniudn.com/DOM.png)
 

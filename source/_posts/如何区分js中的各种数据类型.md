@@ -9,11 +9,11 @@ date: 2015-01-28 17:35:41
 
 类型为：String、Number、Boolean、Function、Regexp、Date、Null、Undefined、Error、Array。
 
+<!-- more -->
+
 刚看到题时第一直觉是用instanceof和typeof来判断。typeof 可用来区分number、string、boolean、function、undefined。
 instanceof可用来判定实例，所以可以来判断Array、RegExp、Date、Error。
 判断Null用if (!exp && typeof exp != "undefined" && exp != 0)来判断。
-
-<!-- more -->
 
 关于null要注意的是：
 

@@ -9,11 +9,11 @@ date: 2014-12-19 10:36:41
 ---
 JSON是一种数据格式，而非编程语言。它是基于JavaScript Programming Language, Standard ECMA-262 3rd Edition - December 1999的一个子集。
 
+<!-- more -->
+
 ##### 语法
 
 JSON的语法可以表示以下三种类型的值：
-
-<!-- more -->
 
 * 简单值：使用与js相同的语法，可以在JSON中表示字符串、数值、布尔值和null。但JSON不支持js中的特殊值undefined。
 * 对象：对象作为一种复杂数据类型，表示的是一组无序的键值对儿。

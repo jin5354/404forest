@@ -31,6 +31,10 @@ sidebar:
             title: global.home
             url: /
             icon: home
+        archives:
+            title: global.archives
+            url: /all-archives
+            icon: archive
         categories:
             title: global.categories
             url: /all-categories
@@ -39,10 +43,6 @@ sidebar:
             title: global.tags
             url: /all-tags
             icon: tags
-        archives:
-            title: global.archives
-            url: /all-archives
-            icon: archive
         search:
             title: global.search
             url: /#search
