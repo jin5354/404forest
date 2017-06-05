@@ -1,4 +1,4 @@
-title: 《WebGL 编程指南》读书笔记脑图 —— Part Three
+title: 《WebGL 编程指南》脑图 —— Part Three
 categories:
   - Code
 tags:
