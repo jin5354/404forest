@@ -1,4 +1,4 @@
-title: 《你不知道的 JavaScript（中卷）》脑图归档
+title: 《你不知道的 JavaScript（中卷）》脑图
 categories:
   - Code
 tags:
