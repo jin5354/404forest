@@ -70,13 +70,10 @@
 - [《HTTP权威指南》笔记——各章脑图](https://www.404forest.com/2015/09/06/%E3%80%8AHTTP%E6%9D%83%E5%A8%81%E6%8C%87%E5%8D%97%E3%80%8B%E7%AC%94%E8%AE%B0%E2%80%94%E2%80%94%E5%90%84%E7%AB%A0%E8%84%91%E5%9B%BE/)
 - [<JS高程>学习笔记脑图，备份用](https://www.404forest.com/2015/04/06/%3CJS%E9%AB%98%E7%A8%8B%3E%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E8%84%91%E5%9B%BE%EF%BC%8C%E5%A4%87%E4%BB%BD%E7%94%A8/)
 
-### 其它端探索
+### 其他
 
 - [为Alfred3编写一个汇率转换workflow——CurrencyConvert](https://www.404forest.com/2016/06/16/%E4%B8%BAAlfred3%E7%BC%96%E5%86%99%E4%B8%80%E4%B8%AA%E6%B1%87%E7%8E%87%E8%BD%AC%E6%8D%A2workflow%E2%80%94%E2%80%94CurrencyConvert/)
 - [Ruby元编程——小记](https://www.404forest.com/2016/04/27/Ruby%E5%85%83%E7%BC%96%E7%A8%8B%E2%80%94%E2%80%94%E5%B0%8F%E8%AE%B0/)
-
-### 其他
-
 - [分享 - Web 开发从入门到放弃 Part One](https://www.404forest.com/2017/03/29/web-dev-roadmap-part-one/)
 - [玉泉通过ipv6来使用shadowsocks](https://www.404forest.com/2015/10/13/%E7%8E%89%E6%B3%89%E9%80%9A%E8%BF%87ipv6%E6%9D%A5%E4%BD%BF%E7%94%A8shadowsocks/)
 - [在mac下配置wine环境——自己wine一个小游戏](https://www.404forest.com/2015/10/12/%E5%9C%A8mac%E4%B8%8B%E9%85%8D%E7%BD%AEwine%E7%8E%AF%E5%A2%83%E2%80%94%E2%80%94%E8%87%AA%E5%B7%B1wine%E4%B8%80%E4%B8%AA%E5%B0%8F%E6%B8%B8%E6%88%8F/)
