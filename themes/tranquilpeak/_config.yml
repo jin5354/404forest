@@ -58,10 +58,6 @@ sidebar:
             title: global.github
             url: https://github.com/jin5354
             icon: github
-        lib:
-            title: Library
-            url: http://lib.404forest.com/
-            icon: book
         weibo:
             title: Weibo
             url: http://weibo.com/207466606
@@ -112,7 +108,7 @@ clear_reading: true
 # Head title displayed at the top of the table of contents.
 toc_title: Table of contents
 # Display thumbnail image of each post on index pages (false: disabled, true: enabled)
-thumbnail_image: true
+thumbnail_image: false
 # Message displayed after the <!-- more --> comment
 read_more_message: Continue reading
 # Message displayed after the <!-- more --> comment or after 300 characters for post with link layout
