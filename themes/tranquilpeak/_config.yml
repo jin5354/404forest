@@ -58,10 +58,6 @@ sidebar:
             title: global.github
             url: https://github.com/jin5354
             icon: github
-        weibo:
-            title: Weibo
-            url: http://weibo.com/207466606
-            icon: weibo
         mail:
             title: Mail
             url: mailto:i@404forest.com
