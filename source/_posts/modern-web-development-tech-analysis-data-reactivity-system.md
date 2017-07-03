@@ -533,16 +533,18 @@ let waiting = false
 function flushSchedulerQueue() {
   queue.forEach(watcher => {
     watcher.run()
-    queue.length = 0
-    watcherIds = {}
-    waiting = false
   })
+  // 执行完 watcher 后重置 queue 状态
+  queue.length = 0
+  watcherIds = {}
+  waiting = false
 }
 
 // 将 watcher 推入 queue
 function queueWatcher(watcher) {
   const uid = watcher.uid
 
+  //去重
   if(!watcherIds[uid]) {
     watcherIds[uid] = true
     queue.push(watcher)
