@@ -31,6 +31,7 @@
 
 ### JavaScript
 
+- [深入探究 eventloop 与浏览器渲染的时序问题](https://www.404forest.com/2017/07/18/how-javascript-actually-works-eventloop-and-uirendering/)
 - [微信浏览器实现后退记忆浏览位置](https://www.404forest.com/2016/08/09/%E5%BE%AE%E4%BF%A1%E6%B5%8F%E8%A7%88%E5%99%A8%E5%AE%9E%E7%8E%B0%E5%90%8E%E9%80%80%E8%AE%B0%E5%BF%86%E6%B5%8F%E8%A7%88%E4%BD%8D%E7%BD%AE/)
 - [该用async写异步代码了](https://www.404forest.com/2016/03/14/%E8%AF%A5%E7%94%A8async%E5%86%99%E5%BC%82%E6%AD%A5%E4%BB%A3%E7%A0%81%E4%BA%86/)
 - [ES6重点概览](https://www.404forest.com/2016/03/13/ES6%E9%87%8D%E7%82%B9%E6%A6%82%E8%A7%88/)
