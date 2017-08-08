@@ -63,6 +63,7 @@
 
 ### 读书
 
+- [《Three.js 开发指南》脑图](https://www.404forest.com/2017/08/08/learning-threejs-mindmap)
 - [《你不知道的 JavaScript（下卷）》脑图](https://www.404forest.com/2017/06/09/You-Dont-Know-JS-Volume-3-Mindmaps/)
 - [《你不知道的 JavaScript（中卷）》脑图](https://www.404forest.com/2017/06/05/You-Dont-Know-JS-Volume-2-Mindmaps/)
 - [《你不知道的 JavaScript（上卷）》脑图](https://www.404forest.com/2017/05/25/You-Dont-Know-JS-Volume-1-Mindmaps/)
