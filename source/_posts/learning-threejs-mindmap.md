@@ -12,8 +12,8 @@ date: 2017-8-8 16:38:11
 <!-- more -->
 
 > 注：
-> 原始链接: https://www.404forest.com/2017/06/28/modern-web-development-tech-analysis-data-reactivity-system/
-> 文章备份: https://github.com/jin5354/404forest/issues/60
+> 原始链接: https://www.404forest.com/2017/08/08/learning-threejs-mindmap/
+> 文章备份: https://github.com/jin5354/404forest/issues/62
 
 # 1. 脑图
 
