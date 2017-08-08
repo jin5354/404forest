@@ -1,4 +1,4 @@
-title: 《Three.js 开发指南》
+title: 《Three.js 开发指南》脑图
 categories:
   - Code
 tags:
