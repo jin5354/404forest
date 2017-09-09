@@ -128,7 +128,6 @@ task 源包括：（[webappapis.html#generic-task-sources](https://html.spec.wha
 > [Promise 规范](https://promisesaplus.com/#notes)中提及 Promise.then 的具体实现由平台把握，可以是 microtask 或 task。当前的共识是使用 microtask 实现。
 - MutationObserver
 - Object.observe
-- process.nextTick
 
 现在再来看前面的例子，就很清晰了：
 
