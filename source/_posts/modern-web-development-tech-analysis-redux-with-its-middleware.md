@@ -473,5 +473,3 @@ function compose(...funcs) {
 3. [Async Actions](http://redux.js.org/docs/advanced/AsyncActions.html)
 4. [Middleware](http://redux.js.org/docs/advanced/Middleware.html)
 5. [redux-thunk/src/index.js](https://github.com/gaearon/redux-thunk/blob/master/src/index.js)
-
-
