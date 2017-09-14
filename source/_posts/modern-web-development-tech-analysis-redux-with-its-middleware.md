@@ -9,7 +9,7 @@ toc: true
 date: 2017-9-13 15:45:11
 ---
 
-[上篇文章](https://www.404forest.com/2017/09/09/put-the-complexity-of-Redux-in-perspective/)中阐释了我对 Redux 架构及其复杂性的看法，提到了 Redux 本质是一个非常简单易懂的状态管理架构，本文将解析 Redux 的源码，并从零实现一个带有中间件系统的 Redux。
+[上篇文章](https://www.404forest.com/2017/09/09/put-the-complexity-of-redux-in-perspective/)中阐释了我对 Redux 架构及其复杂性的看法，提到了 Redux 本质是一个非常简单易懂的状态管理架构，本文将解析 Redux 的源码，并从零实现一个带有中间件系统的 Redux。
 
 <!-- more -->
 
