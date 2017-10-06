@@ -6,6 +6,7 @@
 
 ### 工程化 & 调优
 
+- [代码分割结合 Prefetch 完美优化单页应用加载性能](https://www.404forest.com/2017/09/27/use-code-splitting-with-prefetch-to-improve-spa-web-page-load-performance/)
 - [Webpack 构建性能优化实践](https://www.404forest.com/2017/06/12/optimie-webpack-bundle-performance/)
 - [实践严格的代码风格检查来保证代码质量](https://www.404forest.com/2017/05/24/practice-strict-code-style-check/)
 - [将项目开源到 Github 时，别忘了做些整理工作](https://www.404forest.com/2017/04/28/Preparatory-work-before-upload-project-to-github/)
