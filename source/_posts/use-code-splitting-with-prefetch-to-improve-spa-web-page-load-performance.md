@@ -15,6 +15,10 @@ date: 2017-9-27 11:03:11
 
 <!-- more -->
 
+> 注：
+> 原始链接: https://www.404forest.com/2017/09/27/use-code-splitting-with-prefetch-to-improve-spa-web-page-load-performance/
+> 文章备份: https://github.com/jin5354/404forest/issues/65
+
 # 1. 场景概述
 
 笔者负责一个认证类项目，项目页面结构大体如下：
