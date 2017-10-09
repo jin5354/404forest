@@ -7,7 +7,7 @@ tags:
   - prefetch
   - code splitting
   - prefetch-polyfill-webpack-plugin
-  - toc: true
+toc: true
 date: 2017-9-27 11:03:11
 ---
 
@@ -132,7 +132,7 @@ prefetch polyfill 函数示例：
 2. [Preload, Prefetch And Priorities in Chrome](https://medium.com/reloading/preload-prefetch-and-priorities-in-chrome-776165961bbf)
 3. [config option for adding `async` attribute to script tag?](https://github.com/jantimon/html-webpack-plugin/issues/113)
 4. [Why loading third party scripts async is not good enough](http://www.aaronpeters.nl/blog/why-loading-third-party-scripts-async-is-not-good-enough)
-5. [Beware of <script async defer> blocking HTML "load" event](https://gist.github.com/jakub-g/5286483ff5f29e8fdd9f)
+5. [Beware of `<script async defer>` blocking HTML "load" event](https://gist.github.com/jakub-g/5286483ff5f29e8fdd9f)
 6. [Preload CSS/JavaScript without execution](http://www.phpied.com/preload-cssJavaScript-without-execution/)
 7. [preload-webpack-plugin](https://github.com/GoogleChrome/preload-webpack-plugin)
 8. [prefetch-polyfill-webpack-plugin](https://github.com/jin5354/prefetch-polyfill-webpack-plugin)
