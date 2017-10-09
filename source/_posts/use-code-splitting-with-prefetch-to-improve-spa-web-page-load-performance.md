@@ -100,7 +100,7 @@ prefetch 的兼容性稍好，chrome、firefox、edge、android 4.4+ 都支持�
 
 单页应用的分片 thunk 为非首屏资源，可以采用 prefetch + onload 手动加载的方式实现全平台的预加载。prefetch 可以使用 [preload-webpack-plugin](https://github.com/GoogleChrome/preload-webpack-plugin) 插件自动打入，手动加载既可以在 onload 事件后用 `<script async>` 加载资源，也可以用 `new Image().src` 加载资源，区别仅仅是前者会执行脚本造成些微的性能损耗，而后者看起来比较 hack。
 
-由于手动加载需求，我写了一个插件： [prefetch-polyfill-webpack-plugin](https://github.com/jin5354/prefetch-polyfill-webpack-plugin) 可以自动生成在 onload 事件触发时执行的 prefetch  polyfill 函数，由于其身份是作为 prefetch 的补足，所以仅在 IE、safari、iOS 上执行，使用 `new Image().src` 对分片 thunk 做预加载。
+由于手动加载需求，我写了一个插件： [prefetch-polyfill-webpack-plugin](https://github.com/jin5354/prefetch-polyfill-webpack-plugin) 可以自动生成在 onload 事件触发时执行的 prefetch  polyfill 函数，由于其身份是作为 prefetch 的补足，所以仅在 IE、safari、iOS 上执行，可选择使用 `new Image().src` 或者 `<script async>` 对分片 thunk 做预加载。
 
 prefetch polyfill 函数示例：
 ```JavaScript
@@ -113,7 +113,14 @@ prefetch polyfill 函数示例：
           preloadJs = ['/chunk.a839f9eac501a92482ca.js', ...your thunks]
 
         for (i = 0, length = preloadJs.length; i < length; i++) {
+          //使用 new Image().src
           new Image().src = preloadJs[i]
+
+          //使用 <script async>
+          //var js = document.createElement('script')
+          //js.src = preloadJs[i]
+          //js.async = true
+          //document.body.appendChild(js)
         }
       }
     }
