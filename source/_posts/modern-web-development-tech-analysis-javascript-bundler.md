@@ -1,4 +1,4 @@
-title: 现代前端科技解析 —— Javascript bundler
+title: 现代前端科技解析 —— Javascript Bundler
 categories:
   - Code
 tags:
@@ -15,7 +15,7 @@ date: 2017-10-16 15:45:11
 <!-- more -->
 
 > 注：
-> 原始链接: https://www.404forest.com/2017/10/16/modern-web-development-tech-analysis-js-bundler/
+> 原始链接: https://www.404forest.com/2017/10/16/modern-web-development-tech-analysis-javascript-bundler/
 > 文章备份: https://github.com/jin5354/404forest/issues/66
 
 # 1. 分析 bundle.js
