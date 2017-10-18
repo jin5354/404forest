@@ -17,6 +17,7 @@
 
 ### 现代前端科技解析
 
+- [现代前端科技解析 —— Javascript Bundler](https://www.404forest.com/2017/10/16/modern-web-development-tech-analysis-javascript-bundler/)
 - [现代前端科技解析 —— Redux 及其中间件](https://www.404forest.com/2017/09/13/modern-web-development-tech-analysis-redux-with-its-middleware/)
 - [正确看待 Redux 带来的复杂度问题](https://www.404forest.com/2017/09/09/put-the-complexity-of-redux-in-perspective/)
 - [现代前端科技解析 —— 数据响应式系统 (Data Reactivity System)](https://404forest.com/2017/06/28/modern-web-development-tech-analysis-data-reactivity-system/)
