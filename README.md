@@ -79,6 +79,7 @@
 - [《WebKit技术内幕》——脑图笔记](https://www.404forest.com/2015/10/25/%E3%80%8AWebKit%E6%8A%80%E6%9C%AF%E5%86%85%E5%B9%95%E3%80%8B%E2%80%94%E2%80%94%E8%84%91%E5%9B%BE%E7%AC%94%E8%AE%B0/)
 - [《HTTP权威指南》笔记——各章脑图](https://www.404forest.com/2015/09/06/%E3%80%8AHTTP%E6%9D%83%E5%A8%81%E6%8C%87%E5%8D%97%E3%80%8B%E7%AC%94%E8%AE%B0%E2%80%94%E2%80%94%E5%90%84%E7%AB%A0%E8%84%91%E5%9B%BE/)
 - [<JS高程>学习笔记脑图，备份用](https://www.404forest.com/2015/04/06/%3CJS%E9%AB%98%E7%A8%8B%3E%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E8%84%91%E5%9B%BE%EF%BC%8C%E5%A4%87%E4%BB%BD%E7%94%A8/)
+- [《3D 数学基础》——脑图笔记](https://404forest.com/2018/04/09/3D-Math-Primer-for-Graphics-And-Game-Development/)
 
 ### 其他
 
