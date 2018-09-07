@@ -160,11 +160,11 @@ Content-Type: application/json;charset=UTF-8
 
 这个就是最 plain 的文本格式了。如果你使用最新的 fetch api，默认就是用 `Content-Type: text/plain`。
 
-实际上，请求头和请求体我们是可以自由控制的，当然是格式保持一致最好。不要出现请求头是 `application/x-www-form-urlencoded`，请求体却发送了个 JSON 过去。某些兼容性强的服务器框架可以『智能』推测出请求体类型并解码，但是换个服务器框架可能就报错了。更换项目中的 http 库时也要留意，可能发送请求的 `Content-type` 类型会发生改变。
+实际上，请求头和请求体我们是可以自由控制的，当然是格式保持一致最好。不要出现请求头是 `application/x-www-form-urlencoded`，请求体却发送了个 JSON 过去。某些兼容性强的服务器框架可以『智能』推测出请求体类型并解码，但是换个服务器框架可能就报错了。更换项目中的 http 库时也要留意，可能发送请求的 `Content-type` 类型会变化。
 
 ## 3. 总结
 
-现在再回头看项目出现的问题就很简单了：之前用 $.ajax 发的是 `Content-Type: application/x-www-form-urlencoded`，是简单请求；改成 axios 后默认发的是 `Content-Type: application/json`，变成了需要预检的请求，于是浏览器先发送了 OPTIONS 请求；服务器端的框架没有自动处理 OPTIONS，所以抛错。解决方法：修改服务器端配置使其支持 OPTIONS，或者本地发请求时手动指定成 `Content-Type: application/json` 都可以。
+现在再回头看项目出现的问题就很简单了：之前用 $.ajax 发的是 `Content-Type: application/x-www-form-urlencoded`，是简单请求；改成 axios 后默认发的是 `Content-Type: application/json`，变成了需要预检的请求，于是浏览器先发送了 OPTIONS 请求；服务器端的框架没有自动处理 OPTIONS，所以抛错。解决方法：修改服务器端配置使其支持 OPTIONS，或者本地发请求时手动指定成 `Content-Type: application/x-www-form-urlencoded` 都可以。
 
 ## 4. 参考资料
 
