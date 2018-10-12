@@ -320,6 +320,26 @@ onmessage = function(event) {
 
 在布局结束后，持续渲染也是很吃性能的，机器风扇会一直转；我们可以让鼠标 hover 在 canvas 上时才开启绘制，鼠标 mouseleave 到其他区域时终止绘制，这样就可以在纯展示时避免消耗机器性能了。
 
+最终成果：
+
+![pathTracker-14](/imgs/blog/pathTracker-14.png)
+
+<center>全景图，还在布局中</center>
+
+<br />
+
+![pathTracker-15](/imgs/blog/pathTracker-15.png)
+
+<center>放大查看局部关系</center>
+
+<br />
+
+![pathTracker-16](/imgs/blog/pathTracker-16.png)
+
+<center>切换视角</center>
+
+<br />
+
 ## 5. 参考资料
 
 1. [d3-force](https://github.com/d3/d3-force)
