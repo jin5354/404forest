@@ -13,15 +13,29 @@ date: 2018-10-12 14:11:08
 
 <!-- more -->
 
-<!-- > 注：
-> 原始链接: https://404forest.com/2018/09/06/preflight-request-and-content-type/
-> 文章备份: https://github.com/jin5354/404forest/issues/68 -->
+> 注：
+> 原始链接: https://www.404forest.com/2018/10/12/massive-data-visualization-full-rendering-optimization/
+> 文章备份: https://github.com/jin5354/404forest/issues/69
 
-一张常见的社交关系图，大概是这种样式：
+本文代码已封装为组件 `D3-Force-Graph`，仓库地址 [https://github.com/jin5354/d3-force-graph](https://github.com/jin5354/d3-force-graph)。
 
-![pathTracker-1](/imgs/blog/pathTracker-1.png)
+渲染效果：
 
-<center>原图来自[What is Social Network Analysis and Social Graph?](https://prinsayn.wordpress.com/2013/04/06/what-is-social-network-analysis-and-social-graph/)</center>
+![pathTracker-15](/imgs/blog/pathTracker-15.png)
+
+<center>局部关系</center>
+
+<br />
+
+![pathTracker-17](/imgs/blog/pathTracker-17.png)
+
+<center>自定义头像、大小等</center>
+
+<br />
+
+<p><iframe height='350' scrolling='no' title='D3-Force-Graph Basic Demo' src='//webgl.run/embed/BkNKwElT7?lazyload=true' frameborder='no' allowtransparency='true' allowfullscreen='true' style='width: 100%;'></iframe></p>
+
+<center>小 Demo</center>
 
 <br />
 
@@ -98,9 +112,11 @@ this.paintData.links.forEach((link) => {
 
 <br />
 
-粒子系统的缺点就是，假如之后要调整个别粒子的颜色或大小，必须手写 GLSL Shaders。
-
 对于大量的直线段（无转折），可以使用 [`THREE.LineSegments`](https://threejs.org/docs/#api/en/objects/LineSegments)。`THREE.LineSegments` 使用 `gl.LINES`，可以传入一组顶点，每一对构成一条线段。这样就可以把数万个 line 对象缩减为 1 个 LineSegments 对象，极大降低复杂度。
+
+粒子系统及 LineSegments 的缺点是，假如之后要调整**个别**粒子的颜色或大小，必须手写 GLSL Shaders。
+
+> [D3-Force-Graph](https://github.com/jin5354/d3-force-graph) 支持自定义节点和线条的样式，比如调整[大小](https://github.com/jin5354/d3-force-graph/blob/master/src/shaders/nodes.vs#L7)、[颜色](https://github.com/jin5354/d3-force-graph/blob/master/src/shaders/lines.fs#L4)等，使用 GLSL 语言简单的编写了着色器。受限于篇幅本文不介绍 GLSL，有兴趣的同学可以[查看源码](https://github.com/jin5354/d3-force-graph/tree/master/src/shaders)了解。也可以看下笔者在学习 WebGL 时留下的一系列 Demo: [WebGL tutorial](https://webgl.run/list/H1BtgzNy8)。
 
 `BufferGeometry` 是与 `Geometry` 相似的用来描述几何体的数据结构，其使用二进制数组来存储顶点位置、颜色等信息。Javascript 与显卡进行数据交换时必须使用二进制数据，若是传统文本格式则需要进行格式转化，非常耗时。`BufferGeometry` 可以将二进制数据原封不动送入显卡，显著提高脚本性能。在本文的场景下，万级节点的位置数组，颜色数组均有数M大小，使用 `BufferGeometry` 替换 `Geometry` 是必须的。
 
@@ -113,6 +129,7 @@ point.geometry = new THREE.BufferGeometry()
 // 使用二进制数组，每个节点需要 x,y,z 三个坐标确定位置，所以数组长度分配为 节点数 * 3
 point.positions = new Float32Array(paintData.nodes.length * 3)
 // 使用粒子系统，不再用几何体画圆，而是使用一张带透明背景的圆形图案 png
+// 后期为了更高的灵活度，会将各种物体的 material 都替换为 ShaderMaterial
 point.material = new THREE.PointsMaterial({
   size: 10,
   map: texture,
@@ -208,6 +225,7 @@ worker.onmessage = function(event) {
 
 ```javascript
 // worker.js
+// 调用 d3-force 进行布局迭代
 importScripts("https://d3js.org/d3-collection.v1.min.js");
 importScripts("https://d3js.org/d3-dispatch.v1.min.js");
 importScripts("https://d3js.org/d3-quadtree.v1.min.js");
@@ -320,7 +338,21 @@ onmessage = function(event) {
 
 在布局结束后，持续渲染也是很吃性能的，机器风扇会一直转；我们可以让鼠标 hover 在 canvas 上时才开启绘制，鼠标 mouseleave 到其他区域时终止绘制，这样就可以在纯展示时避免消耗机器性能了。
 
-最终成果：
+### 4.3 节流
+
+在节点数量庞大时，节点头像的拉取和绘制会成为一个性能问题，一般来说当视野范围很大时，节点很小，图片无需加载，可以设置只有在经过缩放，节点大于一定程度（即场景相机 Z 坐标小于一定值）时才加载视口内头像。『判断视野内有哪些节点并加载』这个操作若在每帧都执行频率太高了，可以使用 throttle 技术限制到每秒执行一次；同时头像物体缓存起来，视野移动时进行动态卸载与加载，避免头像加载过多带来性能问题。
+
+### 4.4 GPU 加速
+
+服务器上头像图片都是方形的，但是绘制时我们想要圆形图像，怎么处理出圆角效果呢？按通常思路，我们可以借助 canvas api，画个圆填充图片，最后导出新图片（见张鑫旭大大文章：[小tip: SVG和Canvas分别实现图片圆角效果](https://www.zhangxinxu.com/wordpress/2014/06/svg-canvas-image-border-radius/)）。但由于我们具有操作片元着色器的能力，于是可以[直接在着色器上进行纹理的修改](https://github.com/jin5354/d3-force-graph/blob/master/src/shaders/image.fs#L23)，这里不但裁成了圆角，顺便还做了描边和抗锯齿。着色器直接运行在 GPU 上，性能很好。如果用软件模拟抗锯齿，开销肯定大得多。
+
+![pathTracker-18](/imgs/blog/pathTracker-18.png)
+
+<center>左：裁剪 + 抗锯齿 + 描边 右：只裁剪 </center>
+
+<br />
+
+一些演示图：
 
 ![pathTracker-14](/imgs/blog/pathTracker-14.png)
 
@@ -328,17 +360,9 @@ onmessage = function(event) {
 
 <br />
 
-![pathTracker-15](/imgs/blog/pathTracker-15.png)
-
-<center>放大查看局部关系</center>
-
-<br />
-
 ![pathTracker-16](/imgs/blog/pathTracker-16.png)
 
 <center>切换视角</center>
-
-<br />
 
 ## 5. 参考资料
 
@@ -354,3 +378,5 @@ onmessage = function(event) {
 10. [Worker.postMessage() - Web APIs | MDN](https://developer.mozilla.org/en-US/docs/Web/API/Worker/postMessage)
 11. [Javascript Web Workers Test v1.4.0](http://pmav.eu/stuff/javascript-webworkers/)
 12. [navigator.hardwareConcurrency - Web APIs | MDN](https://developer.mozilla.org/en-US/docs/Web/API/NavigatorConcurrentHardware/hardwareConcurrency)
+13. [Drawing Anti-aliased Circular Points Using OpenGL/WebGL](https://www.desultoryquest.com/blog/drawing-anti-aliased-circular-points-using-opengl-slash-webgl/)
+14. [WebGL tutorial](https://webgl.run/list/H1BtgzNy8)
