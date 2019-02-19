@@ -21,11 +21,11 @@ function createPerson(name, age, job){
     o.job = job;
     o.sayName = function(){
         alert(this.name);
-    } 
-    
+    }
+
     return o;
 }
-     
+
 var person1 = createPerson('john', 27, 'engineer');
 ```
 
@@ -45,10 +45,10 @@ function createPerson(name, age, job){
     o.sayName = function(){
         alert(this.name);
     }
-    
+
     return o;
 }
- 
+
 var person1 = new createPerson('john', 27, 'engineer');
 ```
 
@@ -68,12 +68,12 @@ function Person(name,age,job){
         alert(this.name);
     }
 }
- 
+
 var person1 = new Person('john', 27, 'engineer');
 ```
 
  构造函数模式则解决了对象识别的问题。创建的person1对象是Person的一个实例。默认情况下person1有一个constructor属性（来自于prototype），其值指向Person。
- 
+
 ```
 alert(person1.constructor === Person); //true
 ```
@@ -161,10 +161,10 @@ function Person(name, age, job){
     o.sayName = function(){
         alert(name);
     }
-    
+
     return o;
 }
- 
+
 var person1 = Person('john', 27, 'engineer');
 console.log(person1.name);//undefined
 console.log(person1.sayName());//'john'
@@ -205,13 +205,13 @@ SubType.prototype = new SuperType();
 SubType.prototype.sayAge = function(){
     alert(this.name);
 }
- 
+
 var instance = new SubType();
 ```
 
 画图如下：
 
-![javascript 原型链继承](http://my404forest.qiniudn.com/javascript 原型链继承.png)
+![javascript 原型链继承](/imgs/blog/qiniu/javascript原型链继承.png)
 
 PS: processon的在线作图工具还不错哈，我懒得下载本地作图软件，直接在这个网站上画的。
 
@@ -240,7 +240,7 @@ function SuperType(name){
     this.name = name;
     this.colors = ["red”, "blue”, "green”];
 }
- 
+
 function SubType(name){
     SuperType.call(this, name);
 }
@@ -274,14 +274,14 @@ SubType.prototype = new SuperType();
 SubType.prototype.sayAge = function(){
     alert(this.name);
 }
- 
+
 var instance1 = new SubType();
 var instance2 = new SubType();
 ```
 
 上图：
 
-![javascript 组合继承](http://my404forest.qiniudn.com/javascript 组合继承.png)
+![javascript 组合继承](/imgs/blog/qiniu/javascript组合继承.png)
 
 这样的话在创建不同子类型SubType实例时就会分别拥有自己的属性，又可以使用相同的方法了。
 
@@ -300,7 +300,7 @@ function object(o){
 ```
 上图：
 
-![javascript 原型式继承](http://my404forest.qiniudn.com/javascript 原型式继承.png)
+![javascript 原型式继承](/imgs/blog/qiniu/javascript原型式继承.png)
 
 实际上，object()函数对传入的对象进行了一次浅复制。返回的对象以传入对象o为原型，获得o的属性和方法。和原型链继承一样，包含引用类型值的属性始终会被共享。
 
@@ -322,7 +322,7 @@ function createO(o){
     }
     return temp;
 }
- 
+
 var anotherO = createO(o);
 ```
 
@@ -338,7 +338,7 @@ function inheritPrototype(SubType, SuperType){
     temp.prototype.constructor = SubType;//增强属性和方法
     SubType.prototype = temp;//将子类型原型指向该增强后的副本
 }
- 
+
 function SuperType(name){
     this.name = name;
     this.colors = ["red”, "blue”, "green”];
@@ -350,7 +350,7 @@ function SubType(name,age){
     SuperType.call(this,name)
     this.age = age;
 }
- 
+
 inheritPrototype(SubType, SuperType);
 SubType.prototype.sayAge = function(){
     alert(this.name);
@@ -358,7 +358,7 @@ SubType.prototype.sayAge = function(){
 ```
 上图：
 
-![javascript 寄生组合式继承](http://my404forest.qiniudn.com/javascript 寄生组合式继承.png)
+![javascript 寄生组合式继承](/imgs/blog/qiniu/javascript寄生组合式继承.png)
 
 子类型原型不再有多余的超类型实例属性，而且可以自己进行增强。最理想的继承方式~~
 

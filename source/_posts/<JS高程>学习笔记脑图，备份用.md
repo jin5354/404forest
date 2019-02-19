@@ -12,64 +12,64 @@ date: 2015-04-06 21:38:00
 
 DOM：
 
-![DOM](http://my404forest.qiniudn.com/DOM.png)
+![DOM](/imgs/blog/qiniu/DOM.png)
 
 DOM2与DOM3：
 
-![DOM2与DOM3](http://my404forest.qiniudn.com/DOM2与DOM3.png)
+![DOM2与DOM3](/imgs/blog/qiniu/DOM2与DOM3.png)
 
 DOM扩展：
 
-![DOM扩展](http://my404forest.qiniudn.com/DOM扩展.png)
+![DOM扩展](/imgs/blog/qiniu/DOM扩展.png)
 
 window对象：
 
-![window对象](http://my404forest.qiniudn.com/Window对象.png)
+![window对象](/imgs/blog/qiniu/Window对象.png)
 
 事件：
 
-![事件](http://my404forest.qiniudn.com/事件.png)
+![事件](/imgs/blog/qiniu/事件.png)
 
 表单脚本：
 
-![表单脚本](http://my404forest.qiniudn.com/表单脚本.png)
+![表单脚本](/imgs/blog/qiniu/表单脚本.png)
 
 Canvas：
 
-![Canvas](http://my404forest.qiniudn.com/Canvas.png)
+![Canvas](/imgs/blog/qiniu/Canvas.png)
 
 XML（未完、待补）：
 
-![XML](http://my404forest.qiniudn.com/XML.png)
+![XML](/imgs/blog/qiniu/XML.png)
 
 HTML5脚本编程：
 
-![HTML5脚本编程](http://my404forest.qiniudn.com/HTML5脚本编程.png)
+![HTML5脚本编程](/imgs/blog/qiniu/HTML5脚本编程.png)
 
 错误处理与调试：
 
-![错误处理与调试](http://my404forest.qiniudn.com/错误处理与调试.png)
+![错误处理与调试](/imgs/blog/qiniu/错误处理与调试.png)
 
 JSON：
 
-![JSON](http://my404forest.qiniudn.com/JSON.png)
+![JSON](/imgs/blog/qiniu/JSON.png)
 
 Ajax与Comet：
 
-![Ajax与Comet](http://my404forest.qiniudn.com/Ajax与Comet.png)
+![Ajax与Comet](/imgs/blog/qiniu/Ajax与Comet.png)
 
 高级技巧：
 
-![高级技巧](http://my404forest.qiniudn.com/高级技巧.png)
+![高级技巧](/imgs/blog/qiniu/高级技巧.png)
 
 最佳实践
 
-![最佳实践](http://my404forest.qiniudn.com/最佳实践.png)
+![最佳实践](/imgs/blog/qiniu/最佳实践.png)
 
 离线应用与客户端存储
 
-![离线应用与客户端存储](http://my404forest.qiniudn.com/离线应用与客户端存储.png)
+![离线应用与客户端存储](/imgs/blog/qiniu/离线应用与客户端存储.png)
 
 新型API
 
-![新型API](http://my404forest.qiniudn.com/新型API.png)
+![新型API](/imgs/blog/qiniu/新型API.png)

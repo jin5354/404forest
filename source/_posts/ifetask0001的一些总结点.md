@@ -14,7 +14,7 @@ date: 2015-05-25 15:05:00
 
 <!-- more -->
 
-![多列高度自适应](http://my404forest.qiniudn.com/多列高度自适应.png)
+![多列高度自适应](/imgs/blog/qiniu/多列高度自适应.png)
 
 子元素设置padding-bottom：9999px；margin-bottom：-9999px；先通过padding把盒子扩展到足够高，然后通过margin负边距把它给拉回来，最后父元素设置overflow：hidden隐藏溢出，这样多栏布局中就会以最高栏为其他栏的视觉高度。
 
@@ -63,17 +63,17 @@ date: 2015-05-25 15:05:00
     <dt>列表头</dt>
     <dd>列表内容</dd>
     <dd>列表内容</dd>
-</dl> 
+</dl>
 ```
 
 ##### 时间轴
 
-[时间轴](http://my404forest.qiniudn.com/时间轴.png)
+[时间轴](/imgs/blog/qiniu/时间轴.png)
 
 刚看到时仔细想了想怎么实现，后来觉得中轴线还是做在背景比较好。切一个4x1的图片，设置background-repeat:repeat-y;background-position:top center。就好了，物件放在时间轴上面，做好对齐。
 
 ##### 日历表
 
-![日历表](http://my404forest.qiniudn.com/日历表.png)
+![日历表](/imgs/blog/qiniu/日历表.png)
 
 用table做方便一些，日期那里用rowspan。

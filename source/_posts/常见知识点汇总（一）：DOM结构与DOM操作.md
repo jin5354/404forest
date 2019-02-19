@@ -12,7 +12,7 @@ tags:
 
 <!-- more -->
 
-![node-relationship](http://my404forest.qiniudn.com/node-relationship.png)
+![node-relationship](/imgs/blog/qiniu/node-relationship.png)
 
 节点关系可用上图概括。
 
@@ -126,7 +126,7 @@ document.body.removeChild(thisDiv);
 
 **删除特性节点**
 ``` javascript
-thisDIV.removeAttribute('color'); 
+thisDIV.removeAttribute('color');
 thisDIV.removeAttributeNode(color);
 ```
 
