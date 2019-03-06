@@ -18,4 +18,4 @@ date: 2018-04-09 22:11:41
 
 很多有趣的地方，打算自己将书中的 C++ 操作库用 Typescript 手撸一遍。
 
-![3dmath](http://7sbmuq.com1.z0.glb.clouddn.com/3Dmath.png)
+![3dmath](/imgs/blog/qiniu/3Dmath.png)
