@@ -163,7 +163,7 @@ function installRenderHelpers(vm) {
   vm._m = createCommentVNode
 }
 ```
-随后使用 `new Function` 生成 render 函数。具体思路就是递归，对每个 ASTElement 进行转换，转换为 `_c()` 这种创建 vdom 的函数调用。
+随后使用 `new Function` 生成 render 函数。具体思路就是递归，对每个 ASTElement 进行转换，转换为 `_c()` 这种创建 vdom 的函数调用。如果不了解 ASTElement 这个数据结构先读一下前文[现代前端科技解析 —— HTML Parser](https://www.404forest.com/2019/03/05/modern-web-development-tech-analysis-html-parser/)哦。
 
 ```typescript
 let render = compileToFunctions(ASTElement)
