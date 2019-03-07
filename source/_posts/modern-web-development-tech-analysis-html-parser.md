@@ -318,7 +318,6 @@ function processAttrs(nodeData, attrMap) {
 }
 ```
 
-
 # 3.参考资料
 
 1. [vue parser](https://github.com/vuejs/vue/blob/6ad99796c747987142c21b45c9361cca60e54e68/src/compiler/parser/html-parser.js)
