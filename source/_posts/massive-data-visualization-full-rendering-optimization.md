@@ -21,6 +21,13 @@ date: 2018-10-12 14:11:08
 
 渲染效果：
 
+![pathTracker-gif1](/imgs/blog/pathTracker-gif1.gif)
+![pathTracker-gif2](/imgs/blog/pathTracker-gif2.gif)
+
+<center>GIF</center>
+
+<br />
+
 ![pathTracker-15](/imgs/blog/pathTracker-15.png)
 
 <center>局部关系</center>
