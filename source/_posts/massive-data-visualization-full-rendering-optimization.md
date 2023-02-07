@@ -40,7 +40,7 @@ date: 2018-10-12 14:11:08
 
 <br />
 
-<p><iframe height='350' scrolling='no' title='D3-Force-Graph Basic Demo' src='//webgl.run/embed/BkNKwElT7?lazyload=true' frameborder='no' allowtransparency='true' allowfullscreen='true' style='width: 100%;'></iframe></p>
+<p><iframe height='350' scrolling='no' title='D3-Force-Graph Basic Demo' src='//webgl.404forest.com/embed/BkNKwElT7?lazyload=true' frameborder='no' allowtransparency='true' allowfullscreen='true' style='width: 100%;'></iframe></p>
 
 <center>小 Demo</center>
 
@@ -77,9 +77,9 @@ date: 2018-10-12 14:11:08
 
 如何将这么多的点分布在画布上，并且疏密有致，最好还能安排大型结构体放在中央，散户放外围？力导向算法是一种图布局算法，它可以让点线关系以一种清晰又优美的姿态呈现。这种算法建立在粒子物理学的基础上，将每个节点模拟成原子，在每一帧都通过原子间的斥力（与线的束缚）产生节点的速度与加速度，生成新的位置。经过多次迭代之后，最终得到一个低能量的稳定布局。关于更多力导向算法的知识，可以查阅[d3-force](https://github.com/d3/d3-force)。
 
-有了每个节点的位置，如何绘制点和线？我用 SVG 写了一个 [demo](https://webgl.run/list/H1eLdNjqX)，在我的机器上用 SVG 画 5000 个点就已经降到 10fps 了。可见不依赖硬件加速是无法实现万级节点绘制的。笔者对 three.js 还算熟悉，于是选择 webgl（three.js） 进行渲染。
+有了每个节点的位置，如何绘制点和线？我用 SVG 写了一个 [demo](https://webgl.404forest.com/list/H1eLdNjqX)，在我的机器上用 SVG 画 5000 个点就已经降到 10fps 了。可见不依赖硬件加速是无法实现万级节点绘制的。笔者对 three.js 还算熟悉，于是选择 webgl（three.js） 进行渲染。
 
-<p><iframe height='300' scrolling='no' title='5k svg circles - WebGL Run' src='//webgl.run/embed/S1HRDVj9m?lazyload=true' frameborder='no' allowtransparency='true' allowfullscreen='true' style='width: 100%;'></iframe></p>
+<p><iframe height='300' scrolling='no' title='5k svg circles - WebGL Run' src='//webgl.404forest.com/embed/S1HRDVj9m?lazyload=true' frameborder='no' allowtransparency='true' allowfullscreen='true' style='width: 100%;'></iframe></p>
 
 <center>渲染 5k svg circle 示例，很卡</center>
 
@@ -113,7 +113,7 @@ this.paintData.links.forEach((link) => {
 
 对于区别不大的大量物体，使用[粒子系统](https://threejs.org/docs/#api/en/objects/Points)是一个好选择。在粒子系统里，每个节点只需一个顶点，上面贴一张圆形图案纹理即可。并且使用粒子系统后，可将数万个 circle 对象缩减为 1 个粒子系统对象，极大降低复杂度。
 
-<p><iframe height='300' scrolling='no' title='three.js points 100k nodes' src='//webgl.run/embed/Hk7mY9T9Q?lazyload=true' frameborder='no' allowtransparency='true' allowfullscreen='true' style='width: 100%;'></iframe></p>
+<p><iframe height='300' scrolling='no' title='three.js points 100k nodes' src='//webgl.404forest.com/embed/Hk7mY9T9Q?lazyload=true' frameborder='no' allowtransparency='true' allowfullscreen='true' style='width: 100%;'></iframe></p>
 
 <center>粒子系统渲染 100k 节点，毫无压力</center>
 
@@ -123,7 +123,7 @@ this.paintData.links.forEach((link) => {
 
 粒子系统及 LineSegments 的缺点是，假如之后要调整**个别**粒子的颜色或大小，必须手写 GLSL Shaders。
 
-> [D3-Force-Graph](https://github.com/jin5354/d3-force-graph) 支持自定义节点和线条的样式，比如调整[大小](https://github.com/jin5354/d3-force-graph/blob/master/src/shaders/nodes.vs#L7)、[颜色](https://github.com/jin5354/d3-force-graph/blob/master/src/shaders/lines.fs#L4)等，使用 GLSL 语言简单的编写了着色器。受限于篇幅本文不介绍 GLSL，有兴趣的同学可以[查看源码](https://github.com/jin5354/d3-force-graph/tree/master/src/shaders)了解。也可以看下笔者在学习 WebGL 时留下的一系列 Demo: [WebGL tutorial](https://webgl.run/list/H1BtgzNy8)。
+> [D3-Force-Graph](https://github.com/jin5354/d3-force-graph) 支持自定义节点和线条的样式，比如调整[大小](https://github.com/jin5354/d3-force-graph/blob/master/src/shaders/nodes.vs#L7)、[颜色](https://github.com/jin5354/d3-force-graph/blob/master/src/shaders/lines.fs#L4)等，使用 GLSL 语言简单的编写了着色器。受限于篇幅本文不介绍 GLSL，有兴趣的同学可以[查看源码](https://github.com/jin5354/d3-force-graph/tree/master/src/shaders)了解。也可以看下笔者在学习 WebGL 时留下的一系列 Demo: [WebGL tutorial](https://webgl.404forest.com/list/H1BtgzNy8)。
 
 `BufferGeometry` 是与 `Geometry` 相似的用来描述几何体的数据结构，其使用二进制数组来存储顶点位置、颜色等信息。Javascript 与显卡进行数据交换时必须使用二进制数据，若是传统文本格式则需要进行格式转化，非常耗时。`BufferGeometry` 可以将二进制数据原封不动送入显卡，显著提高脚本性能。在本文的场景下，万级节点的位置数组，颜色数组均有数M大小，使用 `BufferGeometry` 替换 `Geometry` 是必须的。
 
@@ -386,4 +386,4 @@ onmessage = function(event) {
 11. [Javascript Web Workers Test v1.4.0](http://pmav.eu/stuff/javascript-webworkers/)
 12. [navigator.hardwareConcurrency - Web APIs | MDN](https://developer.mozilla.org/en-US/docs/Web/API/NavigatorConcurrentHardware/hardwareConcurrency)
 13. [Drawing Anti-aliased Circular Points Using OpenGL/WebGL](https://www.desultoryquest.com/blog/drawing-anti-aliased-circular-points-using-opengl-slash-webgl/)
-14. [WebGL tutorial](https://webgl.run/list/H1BtgzNy8)
+14. [WebGL tutorial](https://webgl.404forest.com/list/H1BtgzNy8)
